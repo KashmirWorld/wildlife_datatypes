@@ -1,0 +1,20 @@
+{
+  "name": "wildlife_datastore",
+  "version": "1.0.0",
+  "description": "Data Storage API for mobile and desktop wildlife app",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc --build --clean",
+    "test": "mocha --exit -r ts-node/register tests/*.ts"
+  },
+  "keywords": [],
+  "author": "KWF",
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^10.2.0",
+    "react-native-fs": "^2.20.0"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.1"
+  }
+}
