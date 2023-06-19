@@ -28,3 +28,8 @@ jobs:
 
             - name: API testing
               run: npm test
+
+            - uses: actions/upload-artifact@v3
+              with:
+                name: build
+                path: ./build
