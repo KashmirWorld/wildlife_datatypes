@@ -4,10 +4,12 @@ This repository contains all the datatypes used within the Trinity Project / Wil
 application, both on the desktop and the mobile application.
 
 ## Setup
+
+Typically not neccessary as it's in the package.json of the projects that use it.
+
+### Installation
 ```console
-git clone https://github.com/KashmirWorld/wildlife-datatypes.git
-cd wildlife-datatypes
-npm install
+npm install https://github.com/KashmirWorld/wildlife-datatypes.git
 ```
 
 ## Building
