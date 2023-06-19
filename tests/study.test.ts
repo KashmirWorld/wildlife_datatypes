@@ -16,7 +16,7 @@ describe('Study', function () {
                 let studyObj = new Study("TEST", 0,"")
                 let studyStr = JSON.stringify(studyObj)
                 let study: Study = plainToInstance(Study,JSON.parse(studyStr) as Object);
-                assert.deepEqual(study, studyObj)
+                assert.deepEqual(study, -1)
             })
         });
 });
