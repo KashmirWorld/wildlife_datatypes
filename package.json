@@ -2,9 +2,11 @@
   "name": "wildlife_datatypes",
   "version": "1.0.0",
   "description": "Data Types for mobile and desktop wildlife app",
-  "main": "src/index.ts",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
   "scripts": {
     "build": "tsc --build",
+    "prepare": "npm run build",
     "test": "mocha --exit -r ts-node/register tests/*.*"
   },
   "keywords": [],
