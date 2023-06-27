@@ -7,6 +7,7 @@
   "scripts": {
     "build": "tsc --build",
     "prepare": "npm run build",
+    "prepack": "yarn build",
     "test": "mocha --exit -r ts-node/register tests/*.*"
   },
   "keywords": [],
