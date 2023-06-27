@@ -6,8 +6,7 @@
   "types": "build/index.d.ts",
   "scripts": {
     "build": "tsc --build --verbose",
-    "prepare": "npm run build",
-    "prepack": "yarn build",
+    "prepack": "npm run build",
     "test": "mocha --exit -r ts-node/register tests/*.*"
   },
   "keywords": [],
