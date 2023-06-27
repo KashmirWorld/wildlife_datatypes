@@ -7,14 +7,16 @@ export class Study {
     public readonly start_date: number
     public end_date: number
     public description: string
+	public threshold: number
 
 
-    constructor(name: string, end_date: number, description: string) {
+    constructor(name: string, end_date: number, description: string, threshold: number) {
         this.name = name
         this.project_uuid = uuidv4()
         this.start_date = Math.floor(new Date().getTime() / 1000)
         this.end_date = end_date
         this.description = description
+		this.threshold = threshold
     }
 
     get start_date_as_date(): Date {
@@ -27,3 +29,4 @@ export class Study {
     }
 
 }
+
