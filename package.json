@@ -5,7 +5,7 @@
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "scripts": {
-    "build": "npm install && tsc --build --verbose",
+    "build": "tsc --build --verbose",
     "prepare": "npm run build",
     "prepack": "yarn build",
     "test": "mocha --exit -r ts-node/register tests/*.*"
