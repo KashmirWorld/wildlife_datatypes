@@ -16,6 +16,7 @@ export class CameraStation {
     public readonly station_potential: StationPotential
     public note: string
     public rebaits: Rebait[]
+    public lastupdate: number
 
     constructor(watershed_id: string, camera_id: string, images: number, original_sd_card_id: string, longitude: number,
                 latitiude: number, lures_used: Lure[], habitat: Habitat, terrain: Terrain, substrate: Substrate,
@@ -36,6 +37,7 @@ export class CameraStation {
         this.station_potential = station_potential
         this.note = note
         this.rebaits = [];
+        this.lastupdate = this.creation_date
     }
 }
 
