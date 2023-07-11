@@ -6,6 +6,7 @@ describe('Camera Station', function () {
     describe('JSON.stringify()', function () {
         it('should return proper json', function () {
             let jsonObj = new CameraStation(
+                "test",
                 "HD-03",
                 "NFR-13",
                 30,
@@ -27,6 +28,7 @@ describe('Camera Station', function () {
     describe("JSON.parse()", function () {
         it("should return a proper camera station object", function () {
             let cameraStationObj = new CameraStation(
+                "test",
                 "HD-03",
                 "NFR-13",
                 30,

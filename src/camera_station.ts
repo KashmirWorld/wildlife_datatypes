@@ -1,11 +1,9 @@
-import {v4 as uuidv4} from "uuid";
-
 export class CameraStation {
     public readonly id: string
     public watershed_id: string
     public readonly camera_id: string
     public images: number
-    public readonly origional_sd_card_id: string
+    public readonly original_sd_card_id: string
     public readonly creation_date: number
     public longitude: number
     public latitiude: number
@@ -16,16 +14,17 @@ export class CameraStation {
     public readonly station_potential: StationPotential
     public note: string
     public rebaits: Rebait[]
+    public lastupdate: number
 
-    constructor(watershed_id: string, camera_id: string, images: number, original_sd_card_id: string, longitude: number,
+    constructor(uuid: string, watershed_id: string, camera_id: string, images: number, original_sd_card_id: string, longitude: number,
                 latitiude: number, lures_used: Lure[], habitat: Habitat, terrain: Terrain, substrate: Substrate,
                 station_potential: StationPotential, note: string
                 ) {
-        this.id = uuidv4()
+        this.id = uuid
         this.watershed_id = watershed_id
         this.camera_id = camera_id
         this.images = images
-        this.origional_sd_card_id = original_sd_card_id
+        this.original_sd_card_id = original_sd_card_id
         this.creation_date = Math.floor(new Date().getTime()/1000)
         this.longitude = longitude
         this.latitiude = latitiude
@@ -36,6 +35,7 @@ export class CameraStation {
         this.station_potential = station_potential
         this.note = note
         this.rebaits = [];
+        this.lastupdate = this.creation_date
     }
 }
 
