@@ -1,4 +1,3 @@
-import {v4 as uuidv4} from "uuid";
 import {CameraStation} from "./camera_station";
 
 export class Study {
@@ -13,9 +12,9 @@ export class Study {
     // this doesn't include camera_stations as they house their own lastupdated property
     public lastupdated: number
     public camera_stations: CameraStation[]
-    constructor(name: string, end_date: number, description: string, threshold: number) {
+    constructor(uuid: string, name: string, end_date: number, description: string, threshold: number) {
         this.name = name
-        this.project_uuid = uuidv4()
+        this.project_uuid = uuid
         this.start_date = Math.floor(new Date().getTime() / 1000)
         this.end_date = end_date
         this.description = description
