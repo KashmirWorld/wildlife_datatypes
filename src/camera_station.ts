@@ -118,6 +118,7 @@ export class CameraStation {
     public get rebaits(): Rebait[] {
         return this._rebaits
     }
+
     public set rebaits(value: Rebait[]) {
         this._rebaits = value
         this.lastupdate = Math.floor(new Date().getTime()/1000)

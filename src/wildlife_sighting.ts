@@ -1,3 +1,4 @@
+// Wildlife Sightings don't need last updated since their deleted from disk once uploaded (one way transaction)
 export class WildlifeSighting {
     public longitude: number
     public latitude: number
