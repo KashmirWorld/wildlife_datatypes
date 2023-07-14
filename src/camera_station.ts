@@ -1,41 +1,135 @@
 export class CameraStation {
     public readonly id: string
-    public watershed_id: string
+    private _watershed_id: string
     public readonly camera_id: string
-    public images: number
+    private _images: number
     public readonly original_sd_card_id: string
     public readonly creation_date: number
-    public longitude: number
-    public latitiude: number
-    public lures_used: Lure[]
-    public habitat: Habitat
-    public terrain: Terrain
-    public substrate: Substrate
+    private _longitude: number
+    private _latitiude: number
+    private _lures_used: Lure[]
+    private _habitat: Habitat
+    private _terrain: Terrain
+    private _substrate: Substrate
     public readonly station_potential: StationPotential
-    public note: string
-    public rebaits: Rebait[]
-    public lastupdate: number
+    private _note: string
+    private _rebaits: Rebait[]
+    private _lastupdate: number
 
     constructor(uuid: string, watershed_id: string, camera_id: string, images: number, original_sd_card_id: string, longitude: number,
                 latitiude: number, lures_used: Lure[], habitat: Habitat, terrain: Terrain, substrate: Substrate,
                 station_potential: StationPotential, note: string
                 ) {
         this.id = uuid
-        this.watershed_id = watershed_id
+        this._watershed_id = watershed_id
         this.camera_id = camera_id
-        this.images = images
+        this._images = images
         this.original_sd_card_id = original_sd_card_id
         this.creation_date = Math.floor(new Date().getTime()/1000)
-        this.longitude = longitude
-        this.latitiude = latitiude
-        this.lures_used = lures_used
-        this.habitat = habitat
-        this.terrain = terrain
-        this.substrate = substrate
+        this._longitude = longitude
+        this._latitiude = latitiude
+        this._lures_used = lures_used
+        this._habitat = habitat
+        this._terrain = terrain
+        this._substrate = substrate
         this.station_potential = station_potential
-        this.note = note
-        this.rebaits = [];
-        this.lastupdate = this.creation_date
+        this._note = note
+        this._rebaits = [];
+        this._lastupdate = this.creation_date
+    }
+
+    public get watershed_id(): string {
+        return this._watershed_id
+    }
+    public set watershed_id(value: string) {
+        this._watershed_id = value
+        this.lastupdate = Math.floor(new Date().getTime()/1000)
+    }
+
+    public get images(): number {
+        return this._images
+    }
+
+    public set images(value: number) {
+        this._images = value
+        this.lastupdate = Math.floor(new Date().getTime()/1000)
+    }
+
+    public get longitude(): number {
+        return this._longitude
+    }
+
+    public set longitude(value: number) {
+        this._longitude = value
+        this.lastupdate = Math.floor(new Date().getTime()/1000)
+    }
+
+    public get latitiude(): number {
+        return this._latitiude
+    }
+    public set latitiude(value: number) {
+        this._latitiude = value
+        this.lastupdate = Math.floor(new Date().getTime()/1000)
+    }
+
+    public get lures_used(): Lure[] {
+        return this._lures_used
+    }
+    public set lures_used(value: Lure[]) {
+        this._lures_used = value
+        this.lastupdate = Math.floor(new Date().getTime()/1000)
+    }
+
+    public get habitat(): Habitat {
+        return this._habitat
+    }
+    
+    public set habitat(value: Habitat) {
+        this._habitat = value
+        this.lastupdate = Math.floor(new Date().getTime()/1000)
+    }
+
+    public get terrain(): Terrain {
+        return this._terrain
+    }
+
+    public set terrain(value: Terrain) {
+        this._terrain = value
+        this.lastupdate = Math.floor(new Date().getTime()/1000)
+    }
+
+    public get substrate(): Substrate {
+        return this._substrate
+    }
+
+    public set substrate(value: Substrate) {
+        this._substrate = value
+        this.lastupdate = Math.floor(new Date().getTime()/1000)
+    }
+
+    public get note(): string {
+        return this._note
+    }
+    public set note(value: string) {
+        this._note = value
+        this.lastupdate = Math.floor(new Date().getTime()/1000)
+    }
+
+    public get rebaits(): Rebait[] {
+        return this._rebaits
+    }
+    public set rebaits(value: Rebait[]) {
+        this._rebaits = value
+        this.lastupdate = Math.floor(new Date().getTime()/1000)
+    }
+
+    public get lastupdate(): number {
+        return this._lastupdate
+    }
+
+    public set lastupdate(value: number) {
+        this._lastupdate = value
+        this.lastupdate = Math.floor(new Date().getTime()/1000)
     }
 }
 
