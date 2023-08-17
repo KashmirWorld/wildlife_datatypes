@@ -13,7 +13,7 @@ export class CameraStation {
     private _substrate: Substrate
     public readonly station_potential: StationPotential
     private _note: string
-    private _rebaits: Rebait[]
+    public rebaits: Rebait[]
     private _lastupdate: number
 
     constructor(uuid: string, watershed_id: string, camera_id: string, images: number, original_sd_card_id: string, longitude: number,
@@ -34,7 +34,7 @@ export class CameraStation {
         this._substrate = substrate
         this.station_potential = station_potential
         this._note = note
-        this._rebaits = [];
+        this.rebaits = [];
         this._lastupdate = this.creation_date
     }
 
@@ -112,15 +112,6 @@ export class CameraStation {
     }
     public set note(value: string) {
         this._note = value
-        this.lastupdate = Math.floor(new Date().getTime()/1000)
-    }
-
-    public get rebaits(): Rebait[] {
-        return this._rebaits
-    }
-
-    public set rebaits(value: Rebait[]) {
-        this._rebaits = value
         this.lastupdate = Math.floor(new Date().getTime()/1000)
     }
 
