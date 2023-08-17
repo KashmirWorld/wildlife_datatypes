@@ -1,4 +1,5 @@
 import {CameraStation} from "./camera_station";
+import { WildlifeSighting } from "./wildlife_sighting";
 
 export class Study {
 
@@ -12,6 +13,8 @@ export class Study {
     // this doesn't include camera_stations as they house their own lastupdated property
     public lastupdated: number
     public camera_stations: CameraStation[]
+    public wildlife_sightings: WildlifeSighting[]
+
     constructor(uuid: string, name: string, end_date: number, description: string, threshold: number) {
         this.name = name
         this.project_uuid = uuid
@@ -20,6 +23,7 @@ export class Study {
         this.description = description
 		this.threshold = threshold
         this.camera_stations = []
+        this.wildlife_sightings = []
         this.lastupdated = this.start_date
     }
 
@@ -47,6 +51,23 @@ export class Study {
 
     remove_camera_station(camera_station: CameraStation) {
         this.camera_stations.splice(this.camera_stations.indexOf(camera_station), 1)
+    }
+
+    get_wildlife_sighting_by_image_id(image_id: string): WildlifeSighting | null {
+        for(let wildlife_sighting of this.wildlife_sightings){
+            if(wildlife_sighting.image_id == image_id){
+                return wildlife_sighting
+            }
+        }
+        return null
+    }
+
+    add_wildlife_sighting(wildlife_sighting: WildlifeSighting) {
+        this.wildlife_sightings.push(wildlife_sighting);
+    }
+
+    remove_wildlife_sighting(wildlife_sighting: WildlifeSighting) {
+        this.wildlife_sightings.splice(this.wildlife_sightings.indexOf(wildlife_sighting), 1)
     }
 }
 
