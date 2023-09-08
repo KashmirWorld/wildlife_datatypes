@@ -45,12 +45,22 @@ export class Study {
         return null
     }
 
+    get_camera_station_by_id(id: string): CameraStation | null {
+        let returnValue = null;
+        this.camera_stations.forEach(function(camera_station) {
+            if(camera_station.id == id){
+                returnValue = camera_station
+            }
+        })
+        return returnValue;
+    }
+
     add_camera_station(camera_station: CameraStation) {
         this.camera_stations.push(camera_station)
     }
 
     remove_camera_station(camera_station: CameraStation) {
-        this.camera_stations.splice(this.camera_stations.indexOf(camera_station), 1)
+        this.camera_stations.splice(this.camera_stations.findIndex(x => x.id === camera_station.id), 1)
     }
 
     get_wildlife_sighting_by_image_id(image_id: string): WildlifeSighting | null {
