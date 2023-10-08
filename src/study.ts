@@ -1,5 +1,6 @@
 import {CameraStation} from "./camera_station";
 import { WildlifeSighting } from "./wildlife_sighting";
+import {Type} from 'class-transformer';
 
 export class Study {
 
@@ -12,7 +13,10 @@ export class Study {
     // This field refers to the date that this studies data was updated, the data being the properties above ^^
     // this doesn't include camera_stations as they house their own lastupdated property
     public lastupdated: number
+
+    @Type(() => CameraStation)
     public camera_stations: CameraStation[]
+    @Type(() => WildlifeSighting)
     public wildlife_sightings: WildlifeSighting[]
 
     constructor(uuid: string, name: string, end_date: number, description: string, threshold: number) {

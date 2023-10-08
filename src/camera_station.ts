@@ -38,88 +38,88 @@ export class CameraStation {
         this._lastupdate = this.creation_date
     }
 
-    public get_watershed_id(): string {
+    public get watershed_id(): string {
         return this._watershed_id
     }
-    public set_watershed_id(value: string) {
+    public set watershed_id(value: string) {
         this._watershed_id = value
-        this.set_lastupdate(Math.floor(new Date().getTime()/1000))
+        this.lastupdate = Math.floor(new Date().getTime()/1000)
     }
 
-    public get_images(): number {
+    public get images(): number {
         return this._images
     }
 
-    public set_images(value: number) {
+    public set images(value: number) {
         this._images = value
-        this.set_lastupdate(Math.floor(new Date().getTime()/1000))
+        this.lastupdate = Math.floor(new Date().getTime()/1000)
     }
 
-    public get_longitude(): number {
+    public get longitude(): number {
         return this._longitude
     }
 
-    public set_longitude(value: number) {
+    public set longitude(value: number) {
         this._longitude = value
-        this.set_lastupdate(Math.floor(new Date().getTime()/1000))
+        this.lastupdate = Math.floor(new Date().getTime()/1000)
     }
 
-    public get_latitiude(): number {
+    public get latitiude(): number {
         return this._latitiude
     }
-    public set_latitiude(value: number) {
+    public set latitiude(value: number) {
         this._latitiude = value
-        this.set_lastupdate(Math.floor(new Date().getTime()/1000))
+        this.lastupdate = Math.floor(new Date().getTime()/1000)
     }
 
-    public get_lures_used(): Lure[] {
+    public get lures_used(): Lure[] {
         return this._lures_used
     }
-    public set_lures_used(value: Lure[]) {
+    public set lures_used(value: Lure[]) {
         this._lures_used = value
-        this.set_lastupdate(Math.floor(new Date().getTime()/1000))
+        this.lastupdate = Math.floor(new Date().getTime()/1000)
     }
 
-    public get_habitat(): Habitat {
+    public get habitat(): Habitat {
         return this._habitat
     }
     
-    public set_habitat(value: Habitat) {
+    public set habitat(value: Habitat) {
         this._habitat = value
-        this.set_lastupdate(Math.floor(new Date().getTime()/1000))
+        this.lastupdate = Math.floor(new Date().getTime()/1000)
     }
 
-    public get_terrain(): Terrain {
+    public get terrain(): Terrain {
         return this._terrain
     }
 
-    public set_terrain(value: Terrain) {
+    public set terrain(value: Terrain) {
         this._terrain = value
-        this.set_lastupdate(Math.floor(new Date().getTime()/1000))
+        this.lastupdate = Math.floor(new Date().getTime()/1000)
     }
 
-    public get_substrate(): Substrate {
+    public get substrate(): Substrate {
         return this._substrate
     }
 
-    public set_substrate(value: Substrate) {
+    public set substrate(value: Substrate) {
         this._substrate = value
-        this.set_lastupdate(Math.floor(new Date().getTime()/1000))
+        this.lastupdate = Math.floor(new Date().getTime()/1000)
     }
 
-    public get_note(): string {
+    public get note(): string {
         return this._note
     }
-    public set_note(value: string) {
+    public set note(value: string) {
         this._note = value
-        this.set_lastupdate(Math.floor(new Date().getTime()/1000))
+        this.lastupdate = Math.floor(new Date().getTime()/1000)
     }
 
-    public get_lastupdate(): number {
+    public get lastupdate(): number {
         return this._lastupdate
     }
 
-    public set_lastupdate(value: number) {
+    public set lastupdate(value: number) {
         this._lastupdate = value
     }
 }
