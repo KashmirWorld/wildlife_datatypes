@@ -121,7 +121,6 @@ export class CameraStation {
 
     public set lastupdate(value: number) {
         this._lastupdate = value
-        this.lastupdate = Math.floor(new Date().getTime()/1000)
     }
 }
 
