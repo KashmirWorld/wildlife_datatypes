@@ -38,7 +38,7 @@ export class CameraStation {
         this._lastupdate = this.creation_date
     }
 
-    public watershed_id(): string {
+    public get_watershed_id(): string {
         return this._watershed_id
     }
     public set_watershed_id(value: string) {
@@ -46,7 +46,7 @@ export class CameraStation {
         this.set_lastupdate(Math.floor(new Date().getTime()/1000))
     }
 
-    public images(): number {
+    public get_images(): number {
         return this._images
     }
 
@@ -55,7 +55,7 @@ export class CameraStation {
         this.set_lastupdate(Math.floor(new Date().getTime()/1000))
     }
 
-    public longitude(): number {
+    public get_longitude(): number {
         return this._longitude
     }
 
@@ -64,7 +64,7 @@ export class CameraStation {
         this.set_lastupdate(Math.floor(new Date().getTime()/1000))
     }
 
-    public latitiude(): number {
+    public get_latitiude(): number {
         return this._latitiude
     }
     public set_latitiude(value: number) {
@@ -72,7 +72,7 @@ export class CameraStation {
         this.set_lastupdate(Math.floor(new Date().getTime()/1000))
     }
 
-    public lures_used(): Lure[] {
+    public get_lures_used(): Lure[] {
         return this._lures_used
     }
     public set_lures_used(value: Lure[]) {
@@ -80,7 +80,7 @@ export class CameraStation {
         this.set_lastupdate(Math.floor(new Date().getTime()/1000))
     }
 
-    public habitat(): Habitat {
+    public get_habitat(): Habitat {
         return this._habitat
     }
     
@@ -89,7 +89,7 @@ export class CameraStation {
         this.set_lastupdate(Math.floor(new Date().getTime()/1000))
     }
 
-    public terrain(): Terrain {
+    public get_terrain(): Terrain {
         return this._terrain
     }
 
@@ -98,7 +98,7 @@ export class CameraStation {
         this.set_lastupdate(Math.floor(new Date().getTime()/1000))
     }
 
-    public substrate(): Substrate {
+    public get_substrate(): Substrate {
         return this._substrate
     }
 
@@ -107,7 +107,7 @@ export class CameraStation {
         this.set_lastupdate(Math.floor(new Date().getTime()/1000))
     }
 
-    public note(): string {
+    public get_note(): string {
         return this._note
     }
     public set_note(value: string) {
@@ -115,7 +115,7 @@ export class CameraStation {
         this.set_lastupdate(Math.floor(new Date().getTime()/1000))
     }
 
-    public lastupdate(): number {
+    public get_lastupdate(): number {
         return this._lastupdate
     }
 
