@@ -38,7 +38,9 @@ export class DataBatch {
       this.detections = {...this.detections, image_path : detections};
       for (const class_ID of class_IDs) {
         if (this.class_detections[class_ID]) {
-          this.class_detections[class_ID] = [...this.class_detections[class_ID], image_path];
+          if (this.class_detections[class_ID].includes(image_path)) {
+            this.class_detections[class_ID] = [...this.class_detections[class_ID], image_path];
+          }
         } else {
           this.class_detections[class_ID] = [image_path];
         }
