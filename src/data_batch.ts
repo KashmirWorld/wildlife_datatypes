@@ -30,14 +30,14 @@ export class DataBatch {
       return this.file_paths.length
     }
 
-    // get_images_by_detected_class(class_id: number): string[] {
-    //     return this.class_detections[class_id];
-    // }
+    get_images_by_detected_class(class_id: number): string[] {
+        return this.class_detections[class_id];
+    }
 
-    // add_detections(image_path: string, detections: (Uint8Array | Float32Array | Int32Array)[], class_IDs: number[]) {
-    //   this.detections = {...this.detections, image_path : detections};
-    //   for (const class_ID of class_IDs) {
-    //     this.class_detections[class_ID] = [...this.class_detections[class_ID], image_path];
-    //   }
-    // }
+    add_detections(image_path: string, detections: (Uint8Array | Float32Array | Int32Array)[], class_IDs: number[]) {
+      this.detections = {...this.detections, image_path : detections};
+      for (const class_ID of class_IDs) {
+        this.class_detections[class_ID] = [...this.class_detections[class_ID], image_path];
+      }
+    }
   };
