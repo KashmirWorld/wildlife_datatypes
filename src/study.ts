@@ -32,12 +32,12 @@ export class Study {
         this.lastupdated = this.start_date
     }
 
-    get start_date_as_date(): Date {
+    get_start_date_as_date(): Date {
         return new Date(this.start_date * 1000)
     }
 
 
-    get end_date_as_date(): Date {
+    get_end_date_as_date(): Date {
         return new Date(this.end_date * 1000)
     }
 

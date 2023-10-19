@@ -24,11 +24,11 @@ export class DataBatch {
       this.class_detections = {};
     };
 
-    get data_as_data(): Date {
+    get_date_as_date(): Date {
         return new Date(this.date * 1000)
     }
 
-    get num_images(): number {
+    get_num_images(): number {
       return this.file_paths.length
     }
 
