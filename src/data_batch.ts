@@ -37,7 +37,9 @@ export class DataBatch {
     add_detections(image_path: string, detections: (Uint8Array | Float32Array | Int32Array)[], class_IDs: number[]) {
       this.detections = {...this.detections, image_path : detections};
       for (const class_ID of class_IDs) {
-        this.class_detections = {...this.class_detections, [class_ID] : [...this.class_detections[class_ID], image_path]}
+        const files = this.class_detections[class_ID];
+        files.push(image_path);
+        this.class_detections = {...this.class_detections, [class_ID] : files}
       }
     }
   };
