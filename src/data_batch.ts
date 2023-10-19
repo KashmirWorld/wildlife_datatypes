@@ -5,16 +5,18 @@ export class DataBatch {
     public readonly uuid: string;
     public readonly date: number;
     public readonly author: string;
-    public camera_station_id: string;
+    public readonly study_name: string;
+    public readonly camera_station_id: string;
     public note: string;
     public file_paths: string[];
     public detections: { [id: string] : (Uint8Array | Float32Array | Int32Array)[] };
     public class_detections: { [id: number] : string[] };
 
-    constructor(uuid: string, author: string, camera_station_id: string, note: string){
+    constructor(uuid: string, author: string, study_name: string, camera_station_id: string, note: string){
       this.uuid = uuid;
       this.date = Math.floor(new Date().getTime() / 1000);
       this.author = author;
+      this.study_name = study_name;
       this.camera_station_id = camera_station_id;
       this.note = note;
       this.file_paths = [];
