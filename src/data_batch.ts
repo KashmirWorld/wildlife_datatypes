@@ -1,37 +1,40 @@
-import {Type} from 'class-transformer';
-import { CameraStation } from "./camera_station";
-import { Detections } from './detections';
-
 export class DataBatch {
     public readonly uuid: string;
     public readonly date: number;
     public readonly author: string;
-    public num_images: number;
+    public camera_station_id: string;
     public note: string;
-    public files: string[];
+    public file_paths: string[];
+    public detections: { [id: string] : Uint8Array[] | Int32Array[] | Float32Array[] };
+    public class_detections: { [id: number] : string[] };
 
-    @Type(() => CameraStation)
-    public camera_station: CameraStation;
-
-    @Type(() => Detections)
-    public detections: { [id: string] : Detections[] };
-
-    constructor(uuid: string, author: string, camera_station: CameraStation, num_images: number, note: string){
+    constructor(uuid: string, author: string, camera_station_id: string, num_images: number, note: string){
       this.uuid = uuid;
       this.date = Math.floor(new Date().getTime() / 1000);
       this.author = author;
-      this.camera_station = camera_station;
-      this.num_images = num_images;
+      this.camera_station_id = camera_station_id;
       this.note = note;
-      this.files = [];
+      this.file_paths = [];
       this.detections = {};
+      this.class_detections = {};
     };
 
     get data_as_data(): Date {
         return new Date(this.date * 1000)
     }
 
-    get_detections_by_class(className: string): Detections[] {
-        return this.detections[className];
+    get num_images(): number {
+      return this.file_paths.length;
+    }
+
+    get_images_by_detected_class(class_id: number): string[] {
+        return this.class_detections[class_id];
+    }
+
+    add_detections(image_path: string, detections: Uint8Array[] | Int32Array[] | Float32Array[], class_IDs: number[]) {
+      this.detections = {...this.detections, image_path : detections};
+      for (const class_ID of class_IDs) {
+        this.class_detections[class_ID] = [...this.class_detections[class_ID], image_path];
+      }
     }
   };
