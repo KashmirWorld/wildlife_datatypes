@@ -10,7 +10,7 @@ export class DataBatch {
     public detections: { [id: string] : (Uint8Array | Float32Array | Int32Array)[] };
     public class_detections: { [id: number] : string[] };
 
-    constructor(uuid: string, author: string, camera_station_id: string, num_images: number, note: string){
+    constructor(uuid: string, author: string, camera_station_id: string, note: string){
       this.uuid = uuid;
       this.date = Math.floor(new Date().getTime() / 1000);
       this.author = author;
@@ -19,6 +19,7 @@ export class DataBatch {
       this.file_paths = [];
       this.detections = {};
       this.class_detections = {};
+      this.num_images;
     };
 
     public get data_as_data(): Date {
