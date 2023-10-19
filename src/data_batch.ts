@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+
 export class DataBatch {
     public readonly uuid: string;
     public readonly date: number;
