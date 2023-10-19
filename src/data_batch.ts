@@ -8,8 +8,8 @@ export class DataBatch {
     public camera_station_id: string;
     public note: string;
     public file_paths: string[];
-    // public detections: { [id: string] : (Uint8Array | Float32Array | Int32Array)[] };
-    // public class_detections: { [id: number] : string[] };
+    public detections: { [id: string] : (Uint8Array | Float32Array | Int32Array)[] };
+    public class_detections: { [id: number] : string[] };
 
     constructor(uuid: string, author: string, camera_station_id: string, note: string){
       this.uuid = uuid;
@@ -18,8 +18,8 @@ export class DataBatch {
       this.camera_station_id = camera_station_id;
       this.note = note;
       this.file_paths = [];
-      // this.detections = {};
-      // this.class_detections = {};
+      this.detections = {};
+      this.class_detections = {};
     };
 
     // get data_as_data(): Date {
