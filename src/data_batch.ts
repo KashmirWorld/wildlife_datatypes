@@ -19,6 +19,9 @@ export class DataBatch {
       this.file_paths = [];
       this.detections = {};
       this.class_detections = {};
+      this.num_images;
+      this.add_detections;
+      this.get_images_by_detected_class;
     };
 
     get data_as_data(): Date {
