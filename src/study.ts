@@ -32,57 +32,57 @@ export class Study {
         this.lastupdated = this.start_date
     }
 
-    // get start_date_as_date(): Date {
-    //     return new Date(this.start_date * 1000)
-    // }
+    get start_date_as_date(): Date {
+        return new Date(this.start_date * 1000)
+    }
 
 
-    // get end_date_as_date(): Date {
-    //     return new Date(this.end_date * 1000)
-    // }
+    get end_date_as_date(): Date {
+        return new Date(this.end_date * 1000)
+    }
 
-    // get_camera_station_by_camera_id(camera_id: string): CameraStation | null {
-    //     for (let camera_station of this.camera_stations) {
-    //         if (camera_station.camera_id == camera_id) {
-    //             return camera_station
-    //         }
-    //     }
-    //     return null
-    // }
+    get_camera_station_by_camera_id(camera_id: string): CameraStation | null {
+        for (let camera_station of this.camera_stations) {
+            if (camera_station.camera_id == camera_id) {
+                return camera_station
+            }
+        }
+        return null
+    }
 
-    // get_camera_station_by_id(id: string): CameraStation | null {
-    //     let returnValue = null;
-    //     this.camera_stations.forEach(function(camera_station) {
-    //         if(camera_station.id == id){
-    //             returnValue = camera_station
-    //         }
-    //     })
-    //     return returnValue;
-    // }
+    get_camera_station_by_id(id: string): CameraStation | null {
+        let returnValue = null;
+        this.camera_stations.forEach(function(camera_station) {
+            if(camera_station.id == id){
+                returnValue = camera_station
+            }
+        })
+        return returnValue;
+    }
 
-    // add_camera_station(camera_station: CameraStation) {
-    //     this.camera_stations.push(camera_station)
-    // }
+    add_camera_station(camera_station: CameraStation) {
+        this.camera_stations.push(camera_station)
+    }
 
-    // remove_camera_station(camera_station: CameraStation) {
-    //     this.camera_stations.splice(this.camera_stations.findIndex(x => x.id === camera_station.id), 1)
-    // }
+    remove_camera_station(camera_station: CameraStation) {
+        this.camera_stations.splice(this.camera_stations.findIndex(x => x.id === camera_station.id), 1)
+    }
 
-    // get_wildlife_sighting_by_image_id(image_id: string): WildlifeSighting | null {
-    //     for(let wildlife_sighting of this.wildlife_sightings){
-    //         if(wildlife_sighting.image_id == image_id){
-    //             return wildlife_sighting
-    //         }
-    //     }
-    //     return null
-    // }
+    get_wildlife_sighting_by_image_id(image_id: string): WildlifeSighting | null {
+        for(let wildlife_sighting of this.wildlife_sightings){
+            if(wildlife_sighting.image_id == image_id){
+                return wildlife_sighting
+            }
+        }
+        return null
+    }
 
-    // add_wildlife_sighting(wildlife_sighting: WildlifeSighting) {
-    //     this.wildlife_sightings.push(wildlife_sighting);
-    // }
+    add_wildlife_sighting(wildlife_sighting: WildlifeSighting) {
+        this.wildlife_sightings.push(wildlife_sighting);
+    }
 
-    // remove_wildlife_sighting(wildlife_sighting: WildlifeSighting) {
-    //     this.wildlife_sightings.splice(this.wildlife_sightings.indexOf(wildlife_sighting), 1)
-    // }
+    remove_wildlife_sighting(wildlife_sighting: WildlifeSighting) {
+        this.wildlife_sightings.splice(this.wildlife_sightings.indexOf(wildlife_sighting), 1)
+    }
 }
 
