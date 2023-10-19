@@ -1,5 +1,3 @@
-import 'reflect-metadata';
-
 export class DataBatch {
     public readonly uuid: string;
     public readonly date: number;
@@ -19,22 +17,21 @@ export class DataBatch {
       this.file_paths = [];
       this.detections = {};
       this.class_detections = {};
-      this.num_images;
     };
 
-    public get data_as_data(): Date {
+    get data_as_data(): Date {
         return new Date(this.date * 1000)
     }
 
-    public get num_images(): number {
+    get num_images(): number {
       return this.file_paths.length
     }
 
-    public get_images_by_detected_class(class_id: number): string[] {
+    get_images_by_detected_class(class_id: number): string[] {
         return this.class_detections[class_id];
     }
 
-    public add_detections(image_path: string, detections: (Uint8Array | Float32Array | Int32Array)[], class_IDs: number[]) {
+    add_detections(image_path: string, detections: (Uint8Array | Float32Array | Int32Array)[], class_IDs: number[]) {
       this.detections = {...this.detections, image_path : detections};
       for (const class_ID of class_IDs) {
         this.class_detections[class_ID] = [...this.class_detections[class_ID], image_path];
