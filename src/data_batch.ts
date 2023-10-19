@@ -5,7 +5,7 @@ export class DataBatch {
     public camera_station_id: string;
     public note: string;
     public file_paths: string[];
-    public detections: { [id: string] : Uint8Array[] | Int32Array[] | Float32Array[] };
+    public detections: { [id: string] : Uint8Array[] | Float32Array[] | Int32Array[] };
     public class_detections: { [id: number] : string[] };
 
     constructor(uuid: string, author: string, camera_station_id: string, num_images: number, note: string){
@@ -31,7 +31,7 @@ export class DataBatch {
         return this.class_detections[class_id];
     }
 
-    add_detections(image_path: string, detections: Uint8Array[] | Int32Array[] | Float32Array[], class_IDs: number[]) {
+    add_detections(image_path: string, detections: Uint8Array[] | Float32Array[] | Int32Array[], class_IDs: number[]) {
       this.detections = {...this.detections, image_path : detections};
       for (const class_ID of class_IDs) {
         this.class_detections[class_ID] = [...this.class_detections[class_ID], image_path];
