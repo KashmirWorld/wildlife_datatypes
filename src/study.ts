@@ -1,9 +1,11 @@
 import {CameraStation} from "./camera_station";
 import { WildlifeSighting } from "./wildlife_sighting";
-import {Type} from 'class-transformer';
+import {Expose, Type} from 'class-transformer';
 import 'reflect-metadata';
 
 export class Study {
+
+    @Expose()
 
     public name: string
     public readonly project_uuid: string
