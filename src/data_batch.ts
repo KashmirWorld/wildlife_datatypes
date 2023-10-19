@@ -25,8 +25,8 @@ export class DataBatch {
         return new Date(this.date * 1000)
     }
 
-    get_num_images(): number {
-      return this.file_paths.length;
+    get num_images(): number {
+      return this.file_paths.length
     }
 
     get_images_by_detected_class(class_id: number): string[] {
