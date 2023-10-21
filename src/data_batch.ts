@@ -50,10 +50,10 @@ export class DataBatch {
   }
 
   imageIDFromPath(image_path: string) {
-    return image_path.replace(this.study_name + "/data/", "");
+    return image_path.replace(this.study_name + "/data/" + this.uuid + "/image_", "");
   }
 
   pathFromImageID(image_ID: string) {
-    return this.study_name + "/data/" + image_ID;
+    return this.study_name + "/data/" + this.uuid + "/image_" + image_ID;
   }
 };
