@@ -14,6 +14,7 @@ export class Study {
     // This field refers to the date that this studies data was updated, the data being the properties above ^^
     // this doesn't include camera_stations as they house their own lastupdated property
     public lastupdated: number
+    public data_batch_uuids: string[];
 
     @Type(() => CameraStation)
     public camera_stations: CameraStation[]
@@ -30,12 +31,12 @@ export class Study {
         this.camera_stations = []
         this.wildlife_sightings = []
         this.lastupdated = this.start_date
+        this.data_batch_uuids = []
     }
 
     get_start_date_as_date(): Date {
         return new Date(this.start_date * 1000)
     }
-
 
     get_end_date_as_date(): Date {
         return new Date(this.end_date * 1000)
@@ -84,5 +85,6 @@ export class Study {
     remove_wildlife_sighting(wildlife_sighting: WildlifeSighting) {
         this.wildlife_sightings.splice(this.wildlife_sightings.indexOf(wildlife_sighting), 1)
     }
+
 }
 
