@@ -40,9 +40,11 @@ export class DataBatch {
     return this.class_detections[class_id].map((image_ID) => {return this.pathFromImageID(image_ID)});
   }
 
-  add_detections(image_ID: string, detections: (Uint8Array | Float32Array | Int32Array)[], class_IDs: number[]) {
+  add_detections(image_ID: string, detections: (Uint8Array | Float32Array | Int32Array)[]) {
     this.detections[image_ID] = detections;
-    for (const class_ID of class_IDs) {
+
+    for (const detection of detections) {
+      const class_ID = detection[5];
       if (this.class_detections[class_ID]) {
         if (!this.class_detections[class_ID].includes(image_ID)) {
           this.class_detections[class_ID] = [...this.class_detections[class_ID], image_ID];
