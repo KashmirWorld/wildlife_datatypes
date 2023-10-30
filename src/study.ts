@@ -30,8 +30,8 @@ export class Study {
 		this.threshold = threshold
         this.camera_stations = []
         this.wildlife_sightings = []
-        this.lastupdated = this.start_date
         this.data_batch_uuids = []
+        this.lastupdated = this.start_date
     }
 
     get_start_date_as_date(): Date {
@@ -84,6 +84,14 @@ export class Study {
 
     remove_wildlife_sighting(wildlife_sighting: WildlifeSighting) {
         this.wildlife_sightings.splice(this.wildlife_sightings.indexOf(wildlife_sighting), 1)
+    }
+
+    add_data_batch_uuid(batch_uuid: string) {
+        this.data_batch_uuids.push(batch_uuid);
+    }
+
+    remove_data_batch_uuid(batch_uuid: string) {
+        this.data_batch_uuids.splice(this.data_batch_uuids.indexOf(batch_uuid), 1)
     }
 
 }
