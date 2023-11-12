@@ -17,3 +17,4 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./study"), exports);
 __exportStar(require("./camera_station"), exports);
 __exportStar(require("./wildlife_sighting"), exports);
+__exportStar(require("./data_batch"), exports);

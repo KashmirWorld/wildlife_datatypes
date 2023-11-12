@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WildlifeSighting = void 0;
+// Wildlife Sightings don't need last updated since their deleted from disk once uploaded (one way transaction)
 class WildlifeSighting {
     constructor(author, note, image_id, longitude, latitude) {
         this.author = author;

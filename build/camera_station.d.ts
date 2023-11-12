@@ -1,21 +1,41 @@
 export declare class CameraStation {
     readonly id: string;
-    watershed_id: string;
+    private _watershed_id;
     readonly camera_id: string;
-    images: number;
+    private _images;
     readonly original_sd_card_id: string;
     readonly creation_date: number;
-    longitude: number;
-    latitiude: number;
-    lures_used: Lure[];
-    habitat: Habitat;
-    terrain: Terrain;
-    substrate: Substrate;
+    private _longitude;
+    private _latitiude;
+    private _lures_used;
+    private _habitat;
+    private _terrain;
+    private _substrate;
     readonly station_potential: StationPotential;
-    note: string;
+    private _note;
     rebaits: Rebait[];
-    lastupdate: number;
+    private _lastupdate;
     constructor(uuid: string, watershed_id: string, camera_id: string, images: number, original_sd_card_id: string, longitude: number, latitiude: number, lures_used: Lure[], habitat: Habitat, terrain: Terrain, substrate: Substrate, station_potential: StationPotential, note: string);
+    get_watershed_id(): string;
+    set_watershed_id(value: string): void;
+    get_images(): number;
+    set_images(value: number): void;
+    get_longitude(): number;
+    set_longitude(value: number): void;
+    get_latitiude(): number;
+    set_latitiude(value: number): void;
+    get_lures_used(): Lure[];
+    set_lures_used(value: Lure[]): void;
+    get_habitat(): Habitat;
+    set_habitat(value: Habitat): void;
+    get_terrain(): Terrain;
+    set_terrain(value: Terrain): void;
+    get_substrate(): Substrate;
+    set_substrate(value: Substrate): void;
+    get_note(): string;
+    set_note(value: string): void;
+    get_lastupdate(): number;
+    set_lastupdate(value: number): void;
 }
 export declare enum Lure {
     Skunk_Oil = 0,

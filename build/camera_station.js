@@ -4,21 +4,90 @@ exports.Rebait = exports.StationPotential = exports.Substrate = exports.Habitat 
 class CameraStation {
     constructor(uuid, watershed_id, camera_id, images, original_sd_card_id, longitude, latitiude, lures_used, habitat, terrain, substrate, station_potential, note) {
         this.id = uuid;
-        this.watershed_id = watershed_id;
+        this._watershed_id = watershed_id;
         this.camera_id = camera_id;
-        this.images = images;
+        this._images = images;
         this.original_sd_card_id = original_sd_card_id;
         this.creation_date = Math.floor(new Date().getTime() / 1000);
-        this.longitude = longitude;
-        this.latitiude = latitiude;
-        this.lures_used = lures_used;
-        this.habitat = habitat;
-        this.terrain = terrain;
-        this.substrate = substrate;
+        this._longitude = longitude;
+        this._latitiude = latitiude;
+        this._lures_used = lures_used;
+        this._habitat = habitat;
+        this._terrain = terrain;
+        this._substrate = substrate;
         this.station_potential = station_potential;
-        this.note = note;
+        this._note = note;
         this.rebaits = [];
-        this.lastupdate = this.creation_date;
+        this._lastupdate = this.creation_date;
+    }
+    get_watershed_id() {
+        return this._watershed_id;
+    }
+    set_watershed_id(value) {
+        this._watershed_id = value;
+        this.set_lastupdate(Math.floor(new Date().getTime() / 1000));
+    }
+    get_images() {
+        return this._images;
+    }
+    set_images(value) {
+        this._images = value;
+        this.set_lastupdate(Math.floor(new Date().getTime() / 1000));
+    }
+    get_longitude() {
+        return this._longitude;
+    }
+    set_longitude(value) {
+        this._longitude = value;
+        this.set_lastupdate(Math.floor(new Date().getTime() / 1000));
+    }
+    get_latitiude() {
+        return this._latitiude;
+    }
+    set_latitiude(value) {
+        this._latitiude = value;
+        this.set_lastupdate(Math.floor(new Date().getTime() / 1000));
+    }
+    get_lures_used() {
+        return this._lures_used;
+    }
+    set_lures_used(value) {
+        this._lures_used = value;
+        this.set_lastupdate(Math.floor(new Date().getTime() / 1000));
+    }
+    get_habitat() {
+        return this._habitat;
+    }
+    set_habitat(value) {
+        this._habitat = value;
+        this.set_lastupdate(Math.floor(new Date().getTime() / 1000));
+    }
+    get_terrain() {
+        return this._terrain;
+    }
+    set_terrain(value) {
+        this._terrain = value;
+        this.set_lastupdate(Math.floor(new Date().getTime() / 1000));
+    }
+    get_substrate() {
+        return this._substrate;
+    }
+    set_substrate(value) {
+        this._substrate = value;
+        this.set_lastupdate(Math.floor(new Date().getTime() / 1000));
+    }
+    get_note() {
+        return this._note;
+    }
+    set_note(value) {
+        this._note = value;
+        this.set_lastupdate(Math.floor(new Date().getTime() / 1000));
+    }
+    get_lastupdate() {
+        return this._lastupdate;
+    }
+    set_lastupdate(value) {
+        this._lastupdate = value;
     }
 }
 exports.CameraStation = CameraStation;
