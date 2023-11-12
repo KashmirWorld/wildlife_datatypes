@@ -1,41 +1,126 @@
 export class CameraStation {
     public readonly id: string
-    public watershed_id: string
+    private _watershed_id: string
     public readonly camera_id: string
-    public images: number
+    private _images: number
     public readonly original_sd_card_id: string
     public readonly creation_date: number
-    public longitude: number
-    public latitiude: number
-    public lures_used: Lure[]
-    public habitat: Habitat
-    public terrain: Terrain
-    public substrate: Substrate
+    private _longitude: number
+    private _latitiude: number
+    private _lures_used: Lure[]
+    private _habitat: Habitat
+    private _terrain: Terrain
+    private _substrate: Substrate
     public readonly station_potential: StationPotential
-    public note: string
+    private _note: string
     public rebaits: Rebait[]
-    public lastupdate: number
+    private _lastupdate: number
 
     constructor(uuid: string, watershed_id: string, camera_id: string, images: number, original_sd_card_id: string, longitude: number,
                 latitiude: number, lures_used: Lure[], habitat: Habitat, terrain: Terrain, substrate: Substrate,
                 station_potential: StationPotential, note: string
                 ) {
         this.id = uuid
-        this.watershed_id = watershed_id
+        this._watershed_id = watershed_id
         this.camera_id = camera_id
-        this.images = images
+        this._images = images
         this.original_sd_card_id = original_sd_card_id
         this.creation_date = Math.floor(new Date().getTime()/1000)
-        this.longitude = longitude
-        this.latitiude = latitiude
-        this.lures_used = lures_used
-        this.habitat = habitat
-        this.terrain = terrain
-        this.substrate = substrate
+        this._longitude = longitude
+        this._latitiude = latitiude
+        this._lures_used = lures_used
+        this._habitat = habitat
+        this._terrain = terrain
+        this._substrate = substrate
         this.station_potential = station_potential
-        this.note = note
+        this._note = note
         this.rebaits = [];
-        this.lastupdate = this.creation_date
+        this._lastupdate = this.creation_date
+    }
+
+    public get_watershed_id(): string {
+        return this._watershed_id
+    }
+    public set_watershed_id(value: string) {
+        this._watershed_id = value
+        this.set_lastupdate(Math.floor(new Date().getTime()/1000))
+    }
+
+    public get_images(): number {
+        return this._images
+    }
+
+    public set_images(value: number) {
+        this._images = value
+        this.set_lastupdate(Math.floor(new Date().getTime()/1000))
+    }
+
+    public get_longitude(): number {
+        return this._longitude
+    }
+
+    public set_longitude(value: number) {
+        this._longitude = value
+        this.set_lastupdate(Math.floor(new Date().getTime()/1000))
+    }
+
+    public get_latitiude(): number {
+        return this._latitiude
+    }
+    public set_latitiude(value: number) {
+        this._latitiude = value
+        this.set_lastupdate(Math.floor(new Date().getTime()/1000))
+    }
+
+    public get_lures_used(): Lure[] {
+        return this._lures_used
+    }
+    public set_lures_used(value: Lure[]) {
+        this._lures_used = value
+        this.set_lastupdate(Math.floor(new Date().getTime()/1000))
+    }
+
+    public get_habitat(): Habitat {
+        return this._habitat
+    }
+    
+    public set_habitat(value: Habitat) {
+        this._habitat = value
+        this.set_lastupdate(Math.floor(new Date().getTime()/1000))
+    }
+
+    public get_terrain(): Terrain {
+        return this._terrain
+    }
+
+    public set_terrain(value: Terrain) {
+        this._terrain = value
+        this.set_lastupdate(Math.floor(new Date().getTime()/1000))
+    }
+
+    public get_substrate(): Substrate {
+        return this._substrate
+    }
+
+    public set_substrate(value: Substrate) {
+        this._substrate = value
+        this.set_lastupdate(Math.floor(new Date().getTime()/1000))
+    }
+
+    public get_note(): string {
+        return this._note
+    }
+    public set_note(value: string) {
+        this._note = value
+        this.set_lastupdate(Math.floor(new Date().getTime()/1000))
+    }
+
+    public get_lastupdate(): number {
+        return this._lastupdate
+    }
+
+    public set_lastupdate(value: number) {
+        this._lastupdate = value
     }
 }
 
