@@ -53,9 +53,7 @@ export class DataBatch {
     image_ID: string,
     detections: (Uint8Array | Float32Array | Int32Array)[]
   ) {
-    console.log(detections);
     this.detections[image_ID] = detections;
-    console.log(this.detections);
 
     for (const detection of detections) {
       const class_ID = detection[5];
