@@ -1,7 +1,6 @@
-import 'reflect-metadata';
+import "reflect-metadata";
 
 export class DataBatch {
-
   public readonly uuid: string;
   public readonly date: number;
   public readonly author: string;
@@ -9,10 +8,18 @@ export class DataBatch {
   public readonly camera_station_id: string;
   public note: string;
   public image_IDs: string[];
-  public detections: { [id: string] : (Uint8Array | Float32Array | Int32Array)[] };
-  public class_detections: { [id: number] : string[] };
+  public detections: {
+    [id: string]: (Uint8Array | Float32Array | Int32Array)[];
+  };
+  public class_detections: { [id: number]: string[] };
 
-  constructor(uuid: string, author: string, study_name: string, camera_station_id: string, note: string){
+  constructor(
+    uuid: string,
+    author: string,
+    study_name: string,
+    camera_station_id: string,
+    note: string
+  ) {
     this.uuid = uuid;
     this.date = Math.floor(new Date().getTime() / 1000);
     this.author = author;
@@ -22,14 +29,14 @@ export class DataBatch {
     this.image_IDs = [];
     this.detections = {};
     this.class_detections = {};
-  };
+  }
 
   get_date_as_date(): Date {
-    return new Date(this.date * 1000)
+    return new Date(this.date * 1000);
   }
 
   get_num_images(): number {
-    return this.image_IDs.length
+    return this.image_IDs.length;
   }
 
   get_image_IDs_by_class(class_id: number): string[] {
@@ -37,17 +44,27 @@ export class DataBatch {
   }
 
   get_image_paths_by_class(class_id: number): string[] {
-    return this.class_detections[class_id].map((image_ID) => {return this.pathFromImageID(image_ID)});
+    return this.class_detections[class_id].map((image_ID) => {
+      return this.pathFromImageID(image_ID);
+    });
   }
 
-  add_detections(image_ID: string, detections: (Uint8Array | Float32Array | Int32Array)[]) {
+  add_detections(
+    image_ID: string,
+    detections: (Uint8Array | Float32Array | Int32Array)[]
+  ) {
+    console.log(detections);
     this.detections[image_ID] = detections;
+    console.log(this.detections);
 
     for (const detection of detections) {
       const class_ID = detection[5];
       if (this.class_detections[class_ID]) {
         if (!this.class_detections[class_ID].includes(image_ID)) {
-          this.class_detections[class_ID] = [...this.class_detections[class_ID], image_ID];
+          this.class_detections[class_ID] = [
+            ...this.class_detections[class_ID],
+            image_ID,
+          ];
         }
       } else {
         this.class_detections[class_ID] = [image_ID];
@@ -56,10 +73,13 @@ export class DataBatch {
   }
 
   imageIDFromPath(image_path: string) {
-    return image_path.replace(this.study_name + "/data/" + this.uuid + "/image_", "");
+    return image_path.replace(
+      this.study_name + "/data/" + this.uuid + "/image_",
+      ""
+    );
   }
 
   pathFromImageID(image_ID: string) {
     return this.study_name + "/data/" + this.uuid + "/image_" + image_ID;
   }
-};
+}
