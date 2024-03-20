@@ -41,6 +41,10 @@ export class DataBatch {
     return this.image_IDs.length;
   }
 
+  get_num_detections_by_class(class_id: number): number {
+    return this.class_detections[class_id].length;
+  }
+
   get_image_IDs_by_class(class_id: number): string[] {
     return this.class_detections[class_id];
   }
