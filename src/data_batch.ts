@@ -55,6 +55,10 @@ export class DataBatch {
     });
   }
 
+  get_num_detected_classes(): number {
+    return Object.keys(this.class_detections).length;
+  }
+
   get_detected_classes(): number[] {
     return Object.keys(this.class_detections).map((class_ID) =>
       Number(class_ID)
