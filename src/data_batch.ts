@@ -51,6 +51,10 @@ export class DataBatch {
     });
   }
 
+  get_detected_classes(): string[] {
+    return Object.keys(this.class_detections);
+  }
+
   add_detections(
     image_ID: string,
     detections: (Uint8Array | Float32Array | Int32Array)[]
