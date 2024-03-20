@@ -12,6 +12,7 @@ export class DataBatch {
     [id: string]: (Uint8Array | Float32Array | Int32Array)[];
   };
   public class_detections: { [id: number]: string[] };
+  public confidence_threshold: number;
 
   constructor(
     uuid: string,
@@ -29,6 +30,7 @@ export class DataBatch {
     this.image_IDs = [];
     this.detections = {};
     this.class_detections = {};
+    this.confidence_threshold = 0.7;
   }
 
   get_date_as_date(): Date {
@@ -66,6 +68,36 @@ export class DataBatch {
         }
       } else {
         this.class_detections[class_ID] = [image_ID];
+      }
+    }
+  }
+
+  remove_all_detections() {
+    this.detections = {};
+    this.class_detections = {};
+  }
+
+  remove_detection(
+    image_ID: string,
+    provided_detection: Uint8Array | Float32Array | Int32Array
+  ) {
+    // Check that the detection exists in this.detections
+    let index = this.detections[image_ID].indexOf(provided_detection);
+    if (index > -1) {
+      // Remove detection from this.detections
+      this.detections[image_ID].splice(index, 1);
+    }
+
+    // Check that there are no other detections with the same class
+    const detections = this.detections[image_ID];
+    if (
+      !detections.some((detection) => detection[5] === provided_detection[5])
+    ) {
+      // Remove image_ID from this.class_detections
+      const index =
+        this.class_detections[provided_detection[5]].indexOf(image_ID);
+      if (index > -1) {
+        this.class_detections[provided_detection[5]].splice(index, 1);
       }
     }
   }
