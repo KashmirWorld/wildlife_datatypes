@@ -41,8 +41,15 @@ export class DataBatch {
     return this.image_IDs.length;
   }
 
-  get_num_detections_by_class(class_id: number): number {
-    return this.class_detections[class_id].length;
+  get_path_by_image_id(image_ID: string) {
+    return this.study_name + "/data/" + this.id + "/image_" + image_ID;
+  }
+
+  get_image_id_by_path(image_path: string) {
+    return image_path.replace(
+      this.study_name + "/data/" + this.id + "/image_",
+      ""
+    );
   }
 
   get_image_IDs_by_class(class_id: number): string[] {
@@ -50,18 +57,37 @@ export class DataBatch {
   }
 
   get_image_paths_by_class(class_id: number): string[] {
-    return this.class_detections[class_id].map((image_ID) => {
-      return this.pathFromImageID(image_ID);
-    });
-  }
-
-  get_num_detected_classes(): number {
-    return Object.keys(this.class_detections).length;
+    return this.get_image_IDs_by_class(class_id).map((image_ID) =>
+      this.get_path_by_image_id(image_ID)
+    );
   }
 
   get_detected_classes(): number[] {
     return Object.keys(this.class_detections).map((class_ID) =>
       Number(class_ID)
+    );
+  }
+
+  get_num_detected_classes(): number {
+    return this.get_detected_classes.length;
+  }
+
+  get_num_detections_by_class(class_id: number): number {
+    return this.class_detections[class_id].length;
+  }
+
+  get_avg_confidence_score(): number {
+    const confidenceScores: number[] = [];
+    this.image_IDs.forEach((image_ID) => {
+      this.detections[image_ID].forEach((detection) => {
+        confidenceScores.push(detection[5]);
+      });
+    });
+    return Number(
+      confidenceScores.reduce(
+        (partialSum, current) => partialSum + current,
+        0
+      ) / confidenceScores.length
     );
   }
 
@@ -84,11 +110,6 @@ export class DataBatch {
         this.class_detections[class_ID] = [image_ID];
       }
     }
-  }
-
-  remove_all_detections() {
-    this.detections = {};
-    this.class_detections = {};
   }
 
   remove_detection(
@@ -116,14 +137,8 @@ export class DataBatch {
     }
   }
 
-  imageIDFromPath(image_path: string) {
-    return image_path.replace(
-      this.study_name + "/data/" + this.id + "/image_",
-      ""
-    );
-  }
-
-  pathFromImageID(image_ID: string) {
-    return this.study_name + "/data/" + this.id + "/image_" + image_ID;
+  remove_all_detections() {
+    this.detections = {};
+    this.class_detections = {};
   }
 }
