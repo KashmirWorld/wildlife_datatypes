@@ -1,7 +1,7 @@
 import "reflect-metadata";
 
 export class DataBatch {
-  public readonly uuid: string;
+  public readonly id: string;
   public readonly date: number;
   public readonly author: string;
   public readonly study_name: string;
@@ -15,13 +15,13 @@ export class DataBatch {
   public confidence_threshold: number;
 
   constructor(
-    uuid: string,
+    id: string,
     author: string,
     study_name: string,
     camera_station_id: string,
     note: string
   ) {
-    this.uuid = uuid;
+    this.id = id;
     this.date = Math.floor(new Date().getTime() / 1000);
     this.author = author;
     this.study_name = study_name;
@@ -118,12 +118,12 @@ export class DataBatch {
 
   imageIDFromPath(image_path: string) {
     return image_path.replace(
-      this.study_name + "/data/" + this.uuid + "/image_",
+      this.study_name + "/data/" + this.id + "/image_",
       ""
     );
   }
 
   pathFromImageID(image_ID: string) {
-    return this.study_name + "/data/" + this.uuid + "/image_" + image_ID;
+    return this.study_name + "/data/" + this.id + "/image_" + image_ID;
   }
 }
