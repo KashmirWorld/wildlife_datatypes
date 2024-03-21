@@ -80,7 +80,7 @@ export class DataBatch {
     const confidenceScores: number[] = [];
     this.image_IDs.forEach((image_ID) => {
       this.detections[image_ID].forEach((detection) => {
-        confidenceScores.push(detection[5]);
+        confidenceScores.push(detection[4]);
       });
     });
     return Number(
