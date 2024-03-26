@@ -69,7 +69,7 @@ export class DataBatch {
   }
 
   get_num_detected_classes(): number {
-    return this.get_detected_classes.length;
+    return this.get_detected_classes().length;
   }
 
   get_num_detections_by_class(class_id: number): number {
