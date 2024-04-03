@@ -76,6 +76,14 @@ export class DataBatch {
     return this.class_detections[class_id].length;
   }
 
+  get_num_detections(): number {
+    return this.get_detected_classes().reduce(
+      (partialSum, class_id) =>
+        partialSum + this.get_num_detections_by_class(class_id),
+      0
+    );
+  }
+
   get_avg_confidence_score(): number {
     const confidenceScores: number[] = [];
     this.image_IDs.forEach((image_ID) => {
