@@ -47,13 +47,15 @@ export class Study {
     return new Date(this.end_date * 1000);
   }
 
-  get_camera_station_by_camera_id(camera_id: string): CameraStation | null {
-    for (let camera_station of this.camera_stations) {
-      if (camera_station.camera_id == camera_id) {
-        return camera_station;
-      }
-    }
-    return null;
+  add_camera_station(camera_station: CameraStation) {
+    this.camera_stations.push(camera_station);
+  }
+
+  remove_camera_station(camera_station: CameraStation) {
+    this.camera_stations.splice(
+      this.camera_stations.findIndex((x) => x.id === camera_station.id),
+      1
+    );
   }
 
   get_camera_station_by_id(id: string): CameraStation | null {
@@ -66,24 +68,17 @@ export class Study {
     return returnValue;
   }
 
-  add_camera_station(camera_station: CameraStation) {
-    this.camera_stations.push(camera_station);
-  }
-
-  remove_camera_station(camera_station: CameraStation) {
-    this.camera_stations.splice(
-      this.camera_stations.findIndex((x) => x.id === camera_station.id),
-      1
-    );
-  }
-
-  get_wildlife_sighting_by_image_id(image_id: string): WildlifeSighting | null {
-    for (let wildlife_sighting of this.wildlife_sightings) {
-      if (wildlife_sighting.image_id == image_id) {
-        return wildlife_sighting;
+  get_camera_station_by_camera_id(camera_id: string): CameraStation | null {
+    for (let camera_station of this.camera_stations) {
+      if (camera_station.camera_id == camera_id) {
+        return camera_station;
       }
     }
     return null;
+  }
+
+  get_num_wildlife_sightings(): number {
+    return this.wildlife_sightings.length;
   }
 
   add_wildlife_sighting(wildlife_sighting: WildlifeSighting) {
@@ -97,15 +92,24 @@ export class Study {
     );
   }
 
+  get_wildlife_sighting_by_image_id(image_id: string): WildlifeSighting | null {
+    for (let wildlife_sighting of this.wildlife_sightings) {
+      if (wildlife_sighting.image_id == image_id) {
+        return wildlife_sighting;
+      }
+    }
+    return null;
+  }
+
+  verify_data_batch_id(batch_id: string) {
+    return !this.data_batch_ids.some((existing_id) => batch_id === existing_id);
+  }
+
   add_data_batch_id(batch_id: string) {
     this.data_batch_ids.push(batch_id);
   }
 
   remove_data_batch_id(batch_id: string) {
     this.data_batch_ids.splice(this.data_batch_ids.indexOf(batch_id), 1);
-  }
-
-  verify_data_batch_id(batch_id: string) {
-    return !this.data_batch_ids.some((existing_id) => batch_id === existing_id);
   }
 }
