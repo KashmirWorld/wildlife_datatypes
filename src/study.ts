@@ -47,6 +47,10 @@ export class Study {
     return new Date(this.end_date * 1000);
   }
 
+  get_last_updated_as_date(): Date {
+    return new Date(this.lastupdated * 1000);
+  }
+
   add_camera_station(camera_station: CameraStation) {
     this.camera_stations.push(camera_station);
   }
