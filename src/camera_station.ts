@@ -126,6 +126,10 @@ export class CameraStation {
     this.set_lastupdate(Math.floor(new Date().getTime() / 1000));
   }
 
+  public get_lastupdate(): number {
+    return this._lastupdate;
+  }
+
   public get_lastupdate_as_date(): Date {
     return new Date(this._lastupdate);
   }
