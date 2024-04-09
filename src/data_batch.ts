@@ -86,8 +86,8 @@ export class DataBatch {
 
   get_avg_confidence_score(): number {
     const confidenceScores: number[] = [];
-    this.image_IDs.forEach((image_ID) => {
-      this.detections[image_ID].forEach((detection) => {
+    this.image_IDs?.forEach((image_ID) => {
+      this.detections[image_ID]?.forEach((detection) => {
         confidenceScores.push(detection[4]);
       });
     });
