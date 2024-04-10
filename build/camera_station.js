@@ -86,6 +86,9 @@ class CameraStation {
     get_lastupdate() {
         return this._lastupdate;
     }
+    get_lastupdate_as_date() {
+        return new Date(this._lastupdate);
+    }
     set_lastupdate(value) {
         this._lastupdate = value;
     }

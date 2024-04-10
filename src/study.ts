@@ -106,7 +106,7 @@ export class Study {
   }
 
   verify_data_batch_id(batch_id: string) {
-    return !this.data_batch_ids.some((existing_id) => batch_id === existing_id);
+    !this.data_batch_ids.some((existing_id) => batch_id === existing_id);
   }
 
   add_data_batch_id(batch_id: string) {

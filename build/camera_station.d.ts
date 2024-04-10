@@ -35,6 +35,7 @@ export declare class CameraStation {
     get_note(): string;
     set_note(value: string): void;
     get_lastupdate(): number;
+    get_lastupdate_as_date(): Date;
     set_lastupdate(value: number): void;
 }
 export declare enum Lure {
