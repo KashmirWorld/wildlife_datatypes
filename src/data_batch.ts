@@ -41,11 +41,11 @@ export class DataBatch {
     return this.image_IDs.length;
   }
 
-  get_path_by_image_id(image_ID: string) {
+  get_path_by_image_id(image_ID: string): string {
     return this.study_name + "/data/" + this.id + "/image_" + image_ID;
   }
 
-  get_image_id_by_path(image_path: string) {
+  get_image_id_by_path(image_path: string): string {
     return image_path.replace(
       this.study_name + "/data/" + this.id + "/image_",
       ""

@@ -97,16 +97,17 @@ export class Study {
   }
 
   get_wildlife_sighting_by_image_id(image_id: string): WildlifeSighting | null {
+    let returnValue = null;
     for (let wildlife_sighting of this.wildlife_sightings) {
       if (wildlife_sighting.image_id == image_id) {
-        return wildlife_sighting;
+        returnValue = wildlife_sighting;
       }
     }
-    return null;
+    return returnValue;
   }
 
-  verify_data_batch_id(batch_id: string) {
-    !this.data_batch_ids.some((existing_id) => batch_id === existing_id);
+  verify_data_batch_id(batch_id: string): boolean {
+    return !this.data_batch_ids.some((existing_id) => batch_id === existing_id);
   }
 
   add_data_batch_id(batch_id: string) {
