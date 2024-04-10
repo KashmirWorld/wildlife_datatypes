@@ -66,15 +66,16 @@ class Study {
         this.wildlife_sightings.splice(this.wildlife_sightings.indexOf(wildlife_sighting), 1);
     }
     get_wildlife_sighting_by_image_id(image_id) {
+        let returnValue = null;
         for (let wildlife_sighting of this.wildlife_sightings) {
             if (wildlife_sighting.image_id == image_id) {
-                return wildlife_sighting;
+                returnValue = wildlife_sighting;
             }
         }
-        return null;
+        return returnValue;
     }
     verify_data_batch_id(batch_id) {
-        !this.data_batch_ids.some((existing_id) => batch_id === existing_id);
+        return !this.data_batch_ids.some((existing_id) => batch_id === existing_id);
     }
     add_data_batch_id(batch_id) {
         this.data_batch_ids.push(batch_id);

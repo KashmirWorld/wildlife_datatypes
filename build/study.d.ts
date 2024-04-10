@@ -24,7 +24,7 @@ export declare class Study {
     add_wildlife_sighting(wildlife_sighting: WildlifeSighting): void;
     remove_wildlife_sighting(wildlife_sighting: WildlifeSighting): void;
     get_wildlife_sighting_by_image_id(image_id: string): WildlifeSighting | null;
-    verify_data_batch_id(batch_id: string): void;
+    verify_data_batch_id(batch_id: string): boolean;
     add_data_batch_id(batch_id: string): void;
     remove_data_batch_id(batch_id: string): void;
 }
