@@ -184,6 +184,7 @@ export class Rebait {
   public sign_at_station: string;
   public operational: boolean;
   public note: string;
+  public set_by: string
 
   constructor(
     time: number,
@@ -192,7 +193,8 @@ export class Rebait {
     takendown: boolean,
     sign_at_station: string,
     operational: boolean,
-    note: string
+    note: string,
+    set_by: string
   ) {
     this.time = time;
     this.sd_card_id = sd_card_id;
@@ -201,5 +203,6 @@ export class Rebait {
     this.sign_at_station = sign_at_station;
     this.operational = operational;
     this.note = note;
+    this.set_by = set_by;
   }
 }
