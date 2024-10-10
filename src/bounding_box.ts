@@ -24,6 +24,24 @@ export class BoundingBox {
     this.classID = classID;
   }
 
+  make_absolute(imageWidth: number, imageHeight: number) {
+    if (this.x <= 1 && this.y <= 1 && this.width <= 1 && this.height <= 1) {
+      this.x = this.x * imageWidth;
+      this.y = this.y * imageHeight;
+      this.width = this.width * imageWidth;
+      this.height = this.height * imageHeight;
+    }
+  }
+
+  make_relative(imageWidth: number, imageHeight: number) {
+    if (this.x >= 1 || this.y >= 1 || this.width >= 1 || this.height >= 1) {
+      this.x = this.x / imageWidth;
+      this.y = this.y / imageHeight;
+      this.width = this.width / imageWidth;
+      this.height = this.height / imageHeight;
+    }
+  }
+
   update_parameters(
     x: number,
     y: number,

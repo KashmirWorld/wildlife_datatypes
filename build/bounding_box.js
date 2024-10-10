@@ -11,6 +11,22 @@ class BoundingBox {
         this.confidence = confidence;
         this.classID = classID;
     }
+    make_absolute(imageWidth, imageHeight) {
+        if (this.x <= 1 && this.y <= 1 && this.width <= 1 && this.height <= 1) {
+            this.x = this.x * imageWidth;
+            this.y = this.y * imageHeight;
+            this.width = this.width * imageWidth;
+            this.height = this.height * imageHeight;
+        }
+    }
+    make_relative(imageWidth, imageHeight) {
+        if (this.x >= 1 || this.y >= 1 || this.width >= 1 || this.height >= 1) {
+            this.x = this.x / imageWidth;
+            this.y = this.y / imageHeight;
+            this.width = this.width / imageWidth;
+            this.height = this.height / imageHeight;
+        }
+    }
     update_parameters(x, y, width, height, confidence, classID) {
         this.x = x;
         this.y = y;
