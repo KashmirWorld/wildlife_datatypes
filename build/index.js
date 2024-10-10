@@ -18,3 +18,4 @@ __exportStar(require("./study"), exports);
 __exportStar(require("./camera_station"), exports);
 __exportStar(require("./wildlife_sighting"), exports);
 __exportStar(require("./data_batch"), exports);
+__exportStar(require("./bounding_box"), exports);
