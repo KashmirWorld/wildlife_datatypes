@@ -51,7 +51,7 @@ class DataBatch {
         (_a = this.image_IDs) === null || _a === void 0 ? void 0 : _a.forEach((image_ID) => {
             var _a;
             (_a = this.detections[image_ID]) === null || _a === void 0 ? void 0 : _a.forEach((detection) => {
-                confidenceScores.push(detection[4]);
+                confidenceScores.push(detection.get_parameters().confidence);
             });
         });
         return Number(confidenceScores.reduce((partialSum, current) => partialSum + current, 0) / confidenceScores.length);
@@ -59,7 +59,7 @@ class DataBatch {
     add_detections(image_ID, detections) {
         this.detections[image_ID] = detections;
         for (const detection of detections) {
-            const class_ID = detection[5];
+            const class_ID = detection.get_parameters().classID;
             if (this.class_detections[class_ID]) {
                 if (!this.class_detections[class_ID].includes(image_ID)) {
                     this.class_detections[class_ID] = [
@@ -82,11 +82,12 @@ class DataBatch {
         }
         // Check that there are no other detections with the same class
         const detections = this.detections[image_ID];
-        if (!detections.some((detection) => detection[5] === provided_detection[5])) {
+        if (!detections.some((detection) => detection.get_parameters().classID ===
+            provided_detection.get_parameters().classID)) {
             // Remove image_ID from this.class_detections
-            const index = this.class_detections[provided_detection[5]].indexOf(image_ID);
+            const index = this.class_detections[provided_detection.get_parameters().classID].indexOf(image_ID);
             if (index > -1) {
-                this.class_detections[provided_detection[5]].splice(index, 1);
+                this.class_detections[provided_detection.get_parameters().classID].splice(index, 1);
             }
         }
     }
