@@ -89,7 +89,7 @@ export class DataBatch {
     const confidenceScores: number[] = [];
     this.image_IDs?.forEach((image_ID) => {
       this.detections[image_ID]?.forEach((detection) => {
-        confidenceScores.push(detection.get_parameters().confidence);
+        confidenceScores.push(detection.confidence);
       });
     });
     return Number(
@@ -104,7 +104,7 @@ export class DataBatch {
     this.detections[image_ID] = detections;
 
     for (const detection of detections) {
-      const class_ID = detection.get_parameters().classID;
+      const class_ID = detection.classID;
       if (this.class_detections[class_ID]) {
         if (!this.class_detections[class_ID].includes(image_ID)) {
           this.class_detections[class_ID] = [
@@ -130,20 +130,14 @@ export class DataBatch {
     const detections = this.detections[image_ID];
     if (
       !detections.some(
-        (detection) =>
-          detection.get_parameters().classID ===
-          provided_detection.get_parameters().classID
+        (detection) => detection.classID === provided_detection.classID
       )
     ) {
       // Remove image_ID from this.class_detections
       const index =
-        this.class_detections[
-          provided_detection.get_parameters().classID
-        ].indexOf(image_ID);
+        this.class_detections[provided_detection.classID].indexOf(image_ID);
       if (index > -1) {
-        this.class_detections[
-          provided_detection.get_parameters().classID
-        ].splice(index, 1);
+        this.class_detections[provided_detection.classID].splice(index, 1);
       }
     }
   }

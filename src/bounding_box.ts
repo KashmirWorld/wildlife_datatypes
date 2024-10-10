@@ -1,12 +1,12 @@
 import "reflect-metadata";
 
 export class BoundingBox {
-  private x: number;
-  private y: number;
-  private width: number;
-  private height: number;
-  private confidence: number;
-  private classID: number;
+  public x: number;
+  public y: number;
+  public width: number;
+  public height: number;
+  public confidence: number;
+  public classID: number;
 
   constructor(
     x: number,
@@ -22,17 +22,6 @@ export class BoundingBox {
     this.height = height;
     this.confidence = confidence;
     this.classID = classID;
-  }
-
-  get_parameters() {
-    return {
-      x: this.x,
-      y: this.y,
-      width: this.width,
-      height: this.height,
-      confidence: this.confidence,
-      classID: this.classID,
-    };
   }
 
   update_parameters(
