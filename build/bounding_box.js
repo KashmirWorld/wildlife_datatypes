@@ -11,16 +11,6 @@ class BoundingBox {
         this.confidence = confidence;
         this.classID = classID;
     }
-    get_parameters() {
-        return {
-            x: this.x,
-            y: this.y,
-            width: this.width,
-            height: this.height,
-            confidence: this.confidence,
-            classID: this.classID,
-        };
-    }
     update_parameters(x, y, width, height, confidence, classID) {
         this.x = x;
         this.y = y;
