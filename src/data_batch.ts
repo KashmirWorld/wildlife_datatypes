@@ -1,4 +1,5 @@
 import "reflect-metadata";
+import { BoundingBox } from "./bounding_box";
 
 export class DataBatch {
   public readonly id: string;
@@ -9,9 +10,9 @@ export class DataBatch {
   public note: string;
   public image_IDs: string[];
   public detections: {
-    [id: string]: (Uint8Array | Float32Array | Int32Array)[];
+    [image_id: string]: BoundingBox[];
   };
-  public class_detections: { [id: number]: string[] };
+  public class_detections: { [class_id: number]: string[] };
   public confidence_threshold: number;
 
   constructor(
@@ -88,7 +89,7 @@ export class DataBatch {
     const confidenceScores: number[] = [];
     this.image_IDs?.forEach((image_ID) => {
       this.detections[image_ID]?.forEach((detection) => {
-        confidenceScores.push(detection[4]);
+        confidenceScores.push(detection.get_parameters().confidence);
       });
     });
     return Number(
@@ -99,14 +100,11 @@ export class DataBatch {
     );
   }
 
-  add_detections(
-    image_ID: string,
-    detections: (Uint8Array | Float32Array | Int32Array)[]
-  ) {
+  add_detections(image_ID: string, detections: BoundingBox[]) {
     this.detections[image_ID] = detections;
 
     for (const detection of detections) {
-      const class_ID = detection[5];
+      const class_ID = detection.get_parameters().classID;
       if (this.class_detections[class_ID]) {
         if (!this.class_detections[class_ID].includes(image_ID)) {
           this.class_detections[class_ID] = [
@@ -120,10 +118,7 @@ export class DataBatch {
     }
   }
 
-  remove_detection(
-    image_ID: string,
-    provided_detection: Uint8Array | Float32Array | Int32Array
-  ) {
+  remove_detection(image_ID: string, provided_detection: BoundingBox) {
     // Check that the detection exists in this.detections
     let index = this.detections[image_ID].indexOf(provided_detection);
     if (index > -1) {
@@ -134,13 +129,21 @@ export class DataBatch {
     // Check that there are no other detections with the same class
     const detections = this.detections[image_ID];
     if (
-      !detections.some((detection) => detection[5] === provided_detection[5])
+      !detections.some(
+        (detection) =>
+          detection.get_parameters().classID ===
+          provided_detection.get_parameters().classID
+      )
     ) {
       // Remove image_ID from this.class_detections
       const index =
-        this.class_detections[provided_detection[5]].indexOf(image_ID);
+        this.class_detections[
+          provided_detection.get_parameters().classID
+        ].indexOf(image_ID);
       if (index > -1) {
-        this.class_detections[provided_detection[5]].splice(index, 1);
+        this.class_detections[
+          provided_detection.get_parameters().classID
+        ].splice(index, 1);
       }
     }
   }
