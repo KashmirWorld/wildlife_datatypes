@@ -26,7 +26,7 @@ export declare class DataBatch {
     get_num_detections_by_class(class_ID: number): number;
     get_num_detections(): number;
     get_avg_confidence_score(): number;
-    add_detection(image_ID: string, detections: BoundingBox[]): void;
+    add_detections(image_ID: string, detections: BoundingBox[]): void;
     set_detections(image_ID: string, detections: BoundingBox[]): void;
     remove_detections(image_ID: string): void;
     remove_detection(image_ID: string, provided_detection: BoundingBox): void;

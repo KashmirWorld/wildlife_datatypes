@@ -102,7 +102,7 @@ class DataBatch {
         return Number(confidenceScores.reduce((partialSum, current) => partialSum + current, 0) / confidenceScores.length);
     }
     // Add detections associated with an image ID (keeps existing detections)
-    add_detection(image_ID, detections) {
+    add_detections(image_ID, detections) {
         this.detections[image_ID].push(...detections);
     }
     // Set detections associated with an image ID (replaces existing detections)
