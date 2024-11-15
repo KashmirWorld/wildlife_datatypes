@@ -5,7 +5,7 @@ export declare class BoundingBox {
     width: number;
     height: number;
     confidence: number;
-    classID: number;
+    class_ID: number;
     constructor(x: number, y: number, width: number, height: number, confidence: number, classID: number);
     make_absolute(imageWidth: number, imageHeight: number): void;
     make_relative(imageWidth: number, imageHeight: number): void;

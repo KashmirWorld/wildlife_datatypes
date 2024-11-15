@@ -9,7 +9,7 @@ class BoundingBox {
         this.width = width;
         this.height = height;
         this.confidence = confidence;
-        this.classID = classID;
+        this.class_ID = classID;
     }
     make_absolute(imageWidth, imageHeight) {
         if (this.x <= 1 && this.y <= 1 && this.width <= 1 && this.height <= 1) {
@@ -33,7 +33,7 @@ class BoundingBox {
         this.width = width;
         this.height = height;
         this.confidence = confidence;
-        this.classID = classID;
+        this.class_ID = classID;
     }
 }
 exports.BoundingBox = BoundingBox;

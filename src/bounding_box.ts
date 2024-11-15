@@ -6,7 +6,7 @@ export class BoundingBox {
   public width: number;
   public height: number;
   public confidence: number;
-  public classID: number;
+  public class_ID: number;
 
   constructor(
     x: number,
@@ -21,7 +21,7 @@ export class BoundingBox {
     this.width = width;
     this.height = height;
     this.confidence = confidence;
-    this.classID = classID;
+    this.class_ID = classID;
   }
 
   make_absolute(imageWidth: number, imageHeight: number) {
@@ -55,6 +55,6 @@ export class BoundingBox {
     this.width = width;
     this.height = height;
     this.confidence = confidence;
-    this.classID = classID;
+    this.class_ID = classID;
   }
 }
