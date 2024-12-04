@@ -151,6 +151,11 @@ export class DataBatch {
 
   // Add detections associated with an image ID (keeps existing detections)
   add_detections(image_ID: string, detections: BoundingBox[]) {
+    // Initialize a detections array for this image_ID, if nonexistent
+    if (!this.detections[image_ID]) {
+      this.detections[image_ID] = [];
+    }
+    // Add new detections to the array
     this.detections[image_ID].push(...detections);
   }
 

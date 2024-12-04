@@ -103,6 +103,11 @@ class DataBatch {
     }
     // Add detections associated with an image ID (keeps existing detections)
     add_detections(image_ID, detections) {
+        // Initialize a detections array for this image_ID, if nonexistent
+        if (!this.detections[image_ID]) {
+            this.detections[image_ID] = [];
+        }
+        // Add new detections to the array
         this.detections[image_ID].push(...detections);
     }
     // Set detections associated with an image ID (replaces existing detections)
