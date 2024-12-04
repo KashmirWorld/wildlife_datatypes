@@ -103,39 +103,35 @@ class DataBatch {
     }
     // Add detections associated with an image ID (keeps existing detections)
     add_detections(image_ID, detections) {
-        // Initialize a detections array for this image_ID, if nonexistent
+        // Initialize a this.detections array for this image_ID, if nonexistent
         if (!this.detections[image_ID]) {
             this.detections[image_ID] = [];
         }
-        // Add new detections to the array
+        // Add new detections to this.detections
         this.detections[image_ID].push(...detections);
+        // Add new classes to this.detected_classes
+        for (const detection of detections) {
+            if (!this.detected_classes.includes(detection.class_ID)) {
+                this.detected_classes.push(detection.class_ID);
+            }
+        }
     }
     // Set detections associated with an image ID (replaces existing detections)
     set_detections(image_ID, detections) {
-        // Create a list of all class IDs that were present in the old detections
-        let old_class_IDs = [];
-        for (const class_ID of this.detections[image_ID].map((boundingBox) => boundingBox.class_ID)) {
-            if (!old_class_IDs.includes(class_ID)) {
-                old_class_IDs.push(class_ID);
-            }
-        }
-        // Create a list of all class IDs that are no longer present in the new detections
-        let deleted_class_IDs = old_class_IDs;
-        for (const class_ID of detections.map((boundingBox) => boundingBox.class_ID)) {
-            if (deleted_class_IDs.includes(class_ID)) {
-                deleted_class_IDs = deleted_class_IDs.filter((item) => item !== class_ID);
-            }
-        }
-        // Update the detections associated with this image
+        // Update the this.detections array for this image
         this.detections[image_ID] = detections;
-        // Check if (after the update) the class IDs removed from this image are still present in other images
-        for (const class_ID of deleted_class_IDs) {
-            if (this.get_num_detections_by_class(class_ID) > 0) {
-                deleted_class_IDs = deleted_class_IDs.filter((item) => item !== class_ID);
+        // Add classes to this.detected_classes
+        for (const detection of detections) {
+            if (!this.detected_classes.includes(detection.class_ID)) {
+                this.detected_classes.push(detection.class_ID);
             }
         }
-        // Remove class IDs that are no longer present from the detected classes
-        this.detected_classes = this.detected_classes.filter((class_ID) => !deleted_class_IDs.includes(class_ID));
+        // Check if any class IDs no longer have associated detections
+        for (const class_ID of this.get_detected_classes()) {
+            if (!(this.get_num_detections_by_class(class_ID) > 0)) {
+                this.detected_classes.filter((item) => item !== class_ID);
+            }
+        }
     }
     // Remove all detections associated with an image ID
     remove_detections(image_ID) {
@@ -151,7 +147,7 @@ class DataBatch {
         if (index > -1) {
             this.detections[image_ID].splice(index, 1);
         }
-        // Check if (after removing the detection) the class ID from the provided detection still present in other detections
+        // Check if the class ID from the provided detection is still present in other detections
         if (this.get_num_detections_by_class(provided_detection.class_ID) == 0) {
             this.detected_classes = this.detected_classes.filter((class_ID) => class_ID !== provided_detection.class_ID);
         }
