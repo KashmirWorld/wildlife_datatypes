@@ -14,14 +14,14 @@ export class BoundingBox {
     width: number,
     height: number,
     confidence: number,
-    classID: number
+    class_ID: number
   ) {
     this.x = x;
     this.y = y;
     this.width = width;
     this.height = height;
     this.confidence = confidence;
-    this.class_ID = classID;
+    this.class_ID = class_ID;
   }
 
   make_absolute(imageWidth: number, imageHeight: number) {
@@ -48,13 +48,13 @@ export class BoundingBox {
     width: number,
     height: number,
     confidence: number,
-    classID: number
+    class_ID: number
   ) {
     this.x = x;
     this.y = y;
     this.width = width;
     this.height = height;
     this.confidence = confidence;
-    this.class_ID = classID;
+    this.class_ID = class_ID;
   }
 }
