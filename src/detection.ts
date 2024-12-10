@@ -1,6 +1,6 @@
 import "reflect-metadata";
 
-export class BoundingBox {
+export class Detection {
   public x: number;
   public y: number;
   public width: number;
@@ -40,21 +40,5 @@ export class BoundingBox {
       this.width = this.width / imageWidth;
       this.height = this.height / imageHeight;
     }
-  }
-
-  update_parameters(
-    x: number,
-    y: number,
-    width: number,
-    height: number,
-    confidence: number,
-    class_ID: number
-  ) {
-    this.x = x;
-    this.y = y;
-    this.width = width;
-    this.height = height;
-    this.confidence = confidence;
-    this.class_ID = class_ID;
   }
 }

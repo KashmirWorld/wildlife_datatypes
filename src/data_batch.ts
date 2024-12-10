@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { BoundingBox } from "./bounding_box";
+import { Detection } from "./detection";
 
 export class DataBatch {
   public readonly uuid: string;
@@ -10,7 +10,7 @@ export class DataBatch {
   public note: string;
   public image_IDs: string[];
   public detections: {
-    [image_id: string]: BoundingBox[];
+    [image_id: string]: Detection[];
   };
   public detected_classes: number[];
   public confidence_threshold: number;
@@ -64,9 +64,9 @@ export class DataBatch {
     // Iterate over all image_IDs
     for (const image_ID of this.image_IDs) {
       // Iterate over all associated detections
-      for (const boundingBox of this.detections[image_ID]) {
+      for (const detection of this.detections[image_ID]) {
         // Check if the detection contains the correct class_ID
-        if (boundingBox.class_ID == class_ID) {
+        if (detection.class_ID == class_ID) {
           // Store the image_ID, if not already included
           if (!image_IDs.includes(image_ID)) {
             image_IDs.push(image_ID);
@@ -99,18 +99,18 @@ export class DataBatch {
   }
 
   // Fetch all detections for a specific class
-  get_detections_by_class(class_ID: number): BoundingBox[] {
-    let detections: BoundingBox[] = [];
+  get_detections_by_class(class_ID: number): Detection[] {
+    let detections: Detection[] = [];
 
     // Iterate over all image_IDs
     for (const image_ID of this.image_IDs) {
       // Iterate over all associated detections
-      for (const boundingBox of this.detections[image_ID]) {
+      for (const detection of this.detections[image_ID]) {
         // Check if the detection contains the correct class_ID
-        if (boundingBox.class_ID == class_ID) {
+        if (detection.class_ID == class_ID) {
           // Store the detection, if not already included
-          if (!detections.includes(boundingBox)) {
-            detections.push(boundingBox);
+          if (!detections.includes(detection)) {
+            detections.push(detection);
           }
         }
       }
@@ -150,7 +150,7 @@ export class DataBatch {
   }
 
   // Add detections associated with an image ID (keeps existing detections)
-  add_detections(image_ID: string, detections: BoundingBox[]) {
+  add_detections(image_ID: string, detections: Detection[]) {
     // Initialize a this.detections array for this image_ID, if nonexistent
     if (!this.detections[image_ID]) {
       this.detections[image_ID] = [];
@@ -168,7 +168,7 @@ export class DataBatch {
   }
 
   // Set detections associated with an image ID (replaces existing detections)
-  set_detections(image_ID: string, detections: BoundingBox[]) {
+  set_detections(image_ID: string, detections: Detection[]) {
     // Update the this.detections array for this image
     this.detections[image_ID] = detections;
 
@@ -195,7 +195,7 @@ export class DataBatch {
   }
 
   // Remove a specific detection associated with an image ID
-  remove_detection(image_ID: string, provided_detection: BoundingBox) {
+  remove_detection(image_ID: string, provided_detection: Detection) {
     // Get index of the provided detection (-1 if not present)
     let index = this.detections[image_ID].indexOf(provided_detection);
 
