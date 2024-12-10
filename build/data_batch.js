@@ -37,9 +37,9 @@ class DataBatch {
         // Iterate over all image_IDs
         for (const image_ID of this.image_IDs) {
             // Iterate over all associated detections
-            for (const boundingBox of this.detections[image_ID]) {
+            for (const detection of this.detections[image_ID]) {
                 // Check if the detection contains the correct class_ID
-                if (boundingBox.class_ID == class_ID) {
+                if (detection.class_ID == class_ID) {
                     // Store the image_ID, if not already included
                     if (!image_IDs.includes(image_ID)) {
                         image_IDs.push(image_ID);
@@ -69,12 +69,12 @@ class DataBatch {
         // Iterate over all image_IDs
         for (const image_ID of this.image_IDs) {
             // Iterate over all associated detections
-            for (const boundingBox of this.detections[image_ID]) {
+            for (const detection of this.detections[image_ID]) {
                 // Check if the detection contains the correct class_ID
-                if (boundingBox.class_ID == class_ID) {
+                if (detection.class_ID == class_ID) {
                     // Store the detection, if not already included
-                    if (!detections.includes(boundingBox)) {
-                        detections.push(boundingBox);
+                    if (!detections.includes(detection)) {
+                        detections.push(detection);
                     }
                 }
             }

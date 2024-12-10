@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { BoundingBox } from "./bounding_box";
+import { Detection } from "./detection";
 export declare class DataBatch {
     readonly uuid: string;
     readonly date: number;
@@ -9,7 +9,7 @@ export declare class DataBatch {
     note: string;
     image_IDs: string[];
     detections: {
-        [image_id: string]: BoundingBox[];
+        [image_id: string]: Detection[];
     };
     detected_classes: number[];
     confidence_threshold: number;
@@ -22,13 +22,13 @@ export declare class DataBatch {
     get_image_paths_by_class(class_id: number): string[];
     get_detected_classes(): number[];
     get_num_detected_classes(): number;
-    get_detections_by_class(class_ID: number): BoundingBox[];
+    get_detections_by_class(class_ID: number): Detection[];
     get_num_detections_by_class(class_ID: number): number;
     get_num_detections(): number;
     get_avg_confidence_score(): number;
-    add_detections(image_ID: string, detections: BoundingBox[]): void;
-    set_detections(image_ID: string, detections: BoundingBox[]): void;
+    add_detections(image_ID: string, detections: Detection[]): void;
+    set_detections(image_ID: string, detections: Detection[]): void;
     remove_detections(image_ID: string): void;
-    remove_detection(image_ID: string, provided_detection: BoundingBox): void;
+    remove_detection(image_ID: string, provided_detection: Detection): void;
     remove_all_detections(): void;
 }
