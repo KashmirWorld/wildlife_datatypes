@@ -24,7 +24,7 @@ class Detection {
                 this.x = 0;
             }
             // Check if newWidth is not outside of image
-            if (newX + newWidth > imageWidth) {
+            if (newX + newWidth <= imageWidth) {
                 this.width = newWidth;
             }
             else {
@@ -43,7 +43,7 @@ class Detection {
                 this.y = 0;
             }
             // Check if newHeight is not outside of image
-            if (newY + newHeight > imageHeight) {
+            if (newY + newHeight <= imageHeight) {
                 this.height = newHeight;
             }
             else {
