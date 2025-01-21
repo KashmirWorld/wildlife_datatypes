@@ -79,6 +79,20 @@ export class Camera {
     this.set_lastupdate(Math.floor(new Date().getTime() / 1000));
   }
 
+  // Base methods: longitude
+  public get_longitude(): number {
+    return this.longitude;
+  }
+  public set_longitude(value: number) {
+    this.longitude = value;
+    this.set_lastupdate(Math.floor(new Date().getTime() / 1000));
+  }
+
+  // Base methods: creationDate
+  public get_creationDate(): number {
+    return this.creationDate;
+  }
+
   // Base methods: lastUpdate
   public get_lastupdate(): number {
     return this.lastUpdate;
@@ -88,15 +102,6 @@ export class Camera {
   }
   public set_lastupdate(value: number) {
     this.lastUpdate = value;
-  }
-
-  // Base methods: longitude
-  public get_longitude(): number {
-    return this.longitude;
-  }
-  public set_longitude(value: number) {
-    this.longitude = value;
-    this.set_lastupdate(Math.floor(new Date().getTime() / 1000));
   }
 
   // Note extension methods
@@ -139,8 +144,17 @@ export class Camera {
   public get_lures(): string[] | undefined {
     return this.lures;
   }
-  public set_lures_used(value: string[]) {
+  public set_lures(value: string[]) {
     this.lures = value;
+    this.set_lastupdate(Math.floor(new Date().getTime() / 1000));
+  }
+
+  // StationPotential extension methods
+  public get_station_potential(): string | undefined {
+    return this.stationPotential;
+  }
+  public set_station_potential(value: string) {
+    this.stationPotential = value;
     this.set_lastupdate(Math.floor(new Date().getTime() / 1000));
   }
 }

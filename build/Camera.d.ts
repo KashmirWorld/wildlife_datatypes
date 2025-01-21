@@ -15,11 +15,12 @@ export declare class Camera {
     constructor(uuid: string, cameraID: string, latitiude: number, longitude: number, note?: string, terrain?: string, habitat?: string, substrate?: string, lures?: string[], stationPotential?: string);
     get_latitude(): number;
     set_latitude(value: number): void;
+    get_longitude(): number;
+    set_longitude(value: number): void;
+    get_creationDate(): number;
     get_lastupdate(): number;
     get_lastupdate_as_date(): Date;
     set_lastupdate(value: number): void;
-    get_longitude(): number;
-    set_longitude(value: number): void;
     get_note(): string | undefined;
     set_note(value: string): void;
     get_terrain(): string | undefined;
@@ -29,5 +30,7 @@ export declare class Camera {
     get_substrate(): string | undefined;
     set_substrate(value: string): void;
     get_lures(): string[] | undefined;
-    set_lures_used(value: string[]): void;
+    set_lures(value: string[]): void;
+    get_station_potential(): string | undefined;
+    set_station_potential(value: string): void;
 }

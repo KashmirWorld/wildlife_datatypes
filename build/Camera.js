@@ -33,6 +33,18 @@ class Camera {
         this.latitude = value;
         this.set_lastupdate(Math.floor(new Date().getTime() / 1000));
     }
+    // Base methods: longitude
+    get_longitude() {
+        return this.longitude;
+    }
+    set_longitude(value) {
+        this.longitude = value;
+        this.set_lastupdate(Math.floor(new Date().getTime() / 1000));
+    }
+    // Base methods: creationDate
+    get_creationDate() {
+        return this.creationDate;
+    }
     // Base methods: lastUpdate
     get_lastupdate() {
         return this.lastUpdate;
@@ -42,14 +54,6 @@ class Camera {
     }
     set_lastupdate(value) {
         this.lastUpdate = value;
-    }
-    // Base methods: longitude
-    get_longitude() {
-        return this.longitude;
-    }
-    set_longitude(value) {
-        this.longitude = value;
-        this.set_lastupdate(Math.floor(new Date().getTime() / 1000));
     }
     // Note extension methods
     get_note() {
@@ -87,8 +91,16 @@ class Camera {
     get_lures() {
         return this.lures;
     }
-    set_lures_used(value) {
+    set_lures(value) {
         this.lures = value;
+        this.set_lastupdate(Math.floor(new Date().getTime() / 1000));
+    }
+    // StationPotential extension methods
+    get_station_potential() {
+        return this.stationPotential;
+    }
+    set_station_potential(value) {
+        this.stationPotential = value;
         this.set_lastupdate(Math.floor(new Date().getTime() / 1000));
     }
 }
