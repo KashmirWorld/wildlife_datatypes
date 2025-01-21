@@ -1,0 +1,33 @@
+export declare class Camera {
+    readonly uuid: string;
+    readonly cameraID: string;
+    private latitude;
+    private longitude;
+    private creationDate;
+    private lastUpdate;
+    private rebaits;
+    private note;
+    private terrain;
+    private habitat;
+    private substrate;
+    private lures;
+    private stationPotential;
+    constructor(uuid: string, cameraID: string, latitiude: number, longitude: number, note?: string, terrain?: string, habitat?: string, substrate?: string, lures?: string[], stationPotential?: string);
+    get_latitude(): number;
+    set_latitude(value: number): void;
+    get_lastupdate(): number;
+    get_lastupdate_as_date(): Date;
+    set_lastupdate(value: number): void;
+    get_longitude(): number;
+    set_longitude(value: number): void;
+    get_note(): string | undefined;
+    set_note(value: string): void;
+    get_terrain(): string | undefined;
+    set_terrain(value: string): void;
+    get_habitat(): string | undefined;
+    set_habitat(value: string): void;
+    get_substrate(): string | undefined;
+    set_substrate(value: string): void;
+    get_lures(): string[] | undefined;
+    set_lures_used(value: string[]): void;
+}

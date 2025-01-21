@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Study = void 0;
-const camera_station_1 = require("./camera_station");
+const Camera_1 = require("./Camera");
 const wildlife_sighting_1 = require("./wildlife_sighting");
 const class_transformer_1 = require("class-transformer");
 require("reflect-metadata");
@@ -37,12 +37,12 @@ class Study {
         this.camera_stations.push(camera_station);
     }
     remove_camera_station(camera_station) {
-        this.camera_stations.splice(this.camera_stations.findIndex((x) => x.id === camera_station.id), 1);
+        this.camera_stations.splice(this.camera_stations.findIndex((x) => x.uuid === camera_station.uuid), 1);
     }
     get_camera_station_by_id(id) {
         let returnValue = null;
         this.camera_stations.forEach(function (camera_station) {
-            if (camera_station.id == id) {
+            if (camera_station.uuid == id) {
                 returnValue = camera_station;
             }
         });
@@ -50,7 +50,7 @@ class Study {
     }
     get_camera_station_by_camera_id(camera_id) {
         for (let camera_station of this.camera_stations) {
-            if (camera_station.camera_id == camera_id) {
+            if (camera_station.cameraID == camera_id) {
                 return camera_station;
             }
         }
@@ -86,7 +86,7 @@ class Study {
 }
 exports.Study = Study;
 __decorate([
-    (0, class_transformer_1.Type)(() => camera_station_1.CameraStation)
+    (0, class_transformer_1.Type)(() => Camera_1.Camera)
 ], Study.prototype, "camera_stations", void 0);
 __decorate([
     (0, class_transformer_1.Type)(() => wildlife_sighting_1.WildlifeSighting)

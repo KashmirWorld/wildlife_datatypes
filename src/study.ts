@@ -1,4 +1,4 @@
-import { CameraStation } from "./camera_station";
+import { Camera } from "./Camera";
 import { WildlifeSighting } from "./wildlife_sighting";
 import { Type } from "class-transformer";
 import "reflect-metadata";
@@ -15,8 +15,8 @@ export class Study {
   public lastupdated: number;
   public data_batch_ids: string[];
 
-  @Type(() => CameraStation)
-  public camera_stations: CameraStation[];
+  @Type(() => Camera)
+  public camera_stations: Camera[];
   @Type(() => WildlifeSighting)
   public wildlife_sightings: WildlifeSighting[];
 
@@ -51,30 +51,30 @@ export class Study {
     return new Date(this.lastupdated * 1000);
   }
 
-  add_camera_station(camera_station: CameraStation) {
+  add_camera_station(camera_station: Camera) {
     this.camera_stations.push(camera_station);
   }
 
-  remove_camera_station(camera_station: CameraStation) {
+  remove_camera_station(camera_station: Camera) {
     this.camera_stations.splice(
-      this.camera_stations.findIndex((x) => x.id === camera_station.id),
+      this.camera_stations.findIndex((x) => x.uuid === camera_station.uuid),
       1
     );
   }
 
-  get_camera_station_by_id(id: string): CameraStation | null {
+  get_camera_station_by_id(id: string): Camera | null {
     let returnValue = null;
     this.camera_stations.forEach(function (camera_station) {
-      if (camera_station.id == id) {
+      if (camera_station.uuid == id) {
         returnValue = camera_station;
       }
     });
     return returnValue;
   }
 
-  get_camera_station_by_camera_id(camera_id: string): CameraStation | null {
+  get_camera_station_by_camera_id(camera_id: string): Camera | null {
     for (let camera_station of this.camera_stations) {
-      if (camera_station.camera_id == camera_id) {
+      if (camera_station.cameraID == camera_id) {
         return camera_station;
       }
     }
