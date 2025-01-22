@@ -1,3 +1,4 @@
+export * from "./Ecosystem";
 export * from "./study";
 export * from "./Camera";
 export * from "./wildlife_sighting";
