@@ -6,7 +6,7 @@ import { Sighting } from "./wildlife_sighting";
 
 export class Study {
   public readonly uuid: string;
-  public readonly study_name: string;
+  public readonly name: string;
   private start_date: number;
   private end_date: number | null;
   private last_update: number;
@@ -22,13 +22,13 @@ export class Study {
 
   constructor(
     uuid: string,
-    study_name: string,
+    name: string,
     end_date: number | null,
     description: string,
     confidence_threshold: number
   ) {
     this.uuid = uuid;
-    this.study_name = study_name;
+    this.name = name;
     this.start_date = Math.floor(new Date().getTime() / 1000);
     this.end_date = end_date;
     this.last_update = this.start_date;

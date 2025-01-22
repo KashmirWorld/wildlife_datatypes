@@ -12,9 +12,9 @@ const class_transformer_1 = require("class-transformer");
 const Camera_1 = require("./Camera");
 const wildlife_sighting_1 = require("./wildlife_sighting");
 class Study {
-    constructor(uuid, study_name, end_date, description, confidence_threshold) {
+    constructor(uuid, name, end_date, description, confidence_threshold) {
         this.uuid = uuid;
-        this.study_name = study_name;
+        this.name = name;
         this.start_date = Math.floor(new Date().getTime() / 1000);
         this.end_date = end_date;
         this.last_update = this.start_date;
