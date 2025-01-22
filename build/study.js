@@ -7,87 +7,93 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Study = void 0;
+require("reflect-metadata");
+const class_transformer_1 = require("class-transformer");
 const Camera_1 = require("./Camera");
 const wildlife_sighting_1 = require("./wildlife_sighting");
-const class_transformer_1 = require("class-transformer");
-require("reflect-metadata");
 class Study {
-    constructor(uuid, name, end_date, description, threshold) {
-        this.name = name;
-        this.project_uuid = uuid;
+    constructor(uuid, study_name, end_date, description, confidence_threshold) {
+        this.uuid = uuid;
+        this.study_name = study_name;
         this.start_date = Math.floor(new Date().getTime() / 1000);
         this.end_date = end_date;
+        this.last_update = this.start_date;
         this.description = description;
-        this.threshold = threshold;
-        this.camera_stations = [];
-        this.wildlife_sightings = [];
-        this.data_batch_ids = [];
-        this.lastupdated = this.start_date;
+        this.confidence_threshold = confidence_threshold;
+        this.cameras = [];
+        this.batch_uuids = [];
+        this.sightings = [];
     }
     get_start_date_as_date() {
         return new Date(this.start_date * 1000);
     }
     get_end_date_as_date() {
-        return new Date(this.end_date * 1000);
+        if (this.end_date) {
+            return new Date(this.end_date * 1000);
+        }
+        else {
+            return null;
+        }
     }
     get_last_updated_as_date() {
-        return new Date(this.lastupdated * 1000);
+        return new Date(this.last_update * 1000);
     }
-    add_camera_station(camera_station) {
-        this.camera_stations.push(camera_station);
+    get_num_cameras() {
+        return this.cameras.length;
     }
-    remove_camera_station(camera_station) {
-        this.camera_stations.splice(this.camera_stations.findIndex((x) => x.uuid === camera_station.uuid), 1);
+    add_camera_station(camera) {
+        this.cameras.push(camera);
     }
-    get_camera_station_by_id(id) {
-        let returnValue = null;
-        this.camera_stations.forEach(function (camera_station) {
-            if (camera_station.uuid == id) {
-                returnValue = camera_station;
+    remove_camera_station(camera) {
+        this.cameras.splice(this.cameras.findIndex((x) => x.uuid === camera.uuid), 1);
+    }
+    get_camera_by_uuid(uuid) {
+        this.cameras.forEach((camera) => {
+            if (camera.uuid == uuid) {
+                return camera;
             }
         });
-        return returnValue;
+        return null;
     }
-    get_camera_station_by_camera_id(camera_id) {
-        for (let camera_station of this.camera_stations) {
-            if (camera_station.cameraID == camera_id) {
-                return camera_station;
+    get_camera_by_camera_id(camera_id) {
+        this.cameras.forEach((camera) => {
+            if (camera.camera_id == camera_id) {
+                return camera;
+            }
+        });
+        return null;
+    }
+    get_num_sightings() {
+        return this.sightings.length;
+    }
+    add_sighting(sighting) {
+        this.sightings.push(sighting);
+    }
+    remove_sighting(sighting) {
+        this.sightings.splice(this.sightings.findIndex((x) => x.uuid === sighting.uuid), 1);
+    }
+    get_sighting_by_image_id(image_id) {
+        for (let sighting of this.sightings) {
+            if (sighting.image_id == image_id) {
+                return sighting;
             }
         }
         return null;
     }
-    get_num_wildlife_sightings() {
-        return this.wildlife_sightings.length;
+    verify_data_batch_uuid(batch_uuid) {
+        return !this.batch_uuids.some((existing_uuid) => batch_uuid === existing_uuid);
     }
-    add_wildlife_sighting(wildlife_sighting) {
-        this.wildlife_sightings.push(wildlife_sighting);
+    add_data_batch_uuid(batch_uuid) {
+        this.batch_uuids.push(batch_uuid);
     }
-    remove_wildlife_sighting(wildlife_sighting) {
-        this.wildlife_sightings.splice(this.wildlife_sightings.indexOf(wildlife_sighting), 1);
-    }
-    get_wildlife_sighting_by_image_id(image_id) {
-        let returnValue = null;
-        for (let wildlife_sighting of this.wildlife_sightings) {
-            if (wildlife_sighting.image_id == image_id) {
-                returnValue = wildlife_sighting;
-            }
-        }
-        return returnValue;
-    }
-    verify_data_batch_id(batch_id) {
-        return !this.data_batch_ids.some((existing_id) => batch_id === existing_id);
-    }
-    add_data_batch_id(batch_id) {
-        this.data_batch_ids.push(batch_id);
-    }
-    remove_data_batch_id(batch_id) {
-        this.data_batch_ids.splice(this.data_batch_ids.indexOf(batch_id), 1);
+    remove_data_batch_id(batch_uuid) {
+        this.batch_uuids.splice(this.batch_uuids.findIndex((x) => x === batch_uuid), 1);
     }
 }
 exports.Study = Study;
 __decorate([
     (0, class_transformer_1.Type)(() => Camera_1.Camera)
-], Study.prototype, "camera_stations", void 0);
+], Study.prototype, "cameras", void 0);
 __decorate([
-    (0, class_transformer_1.Type)(() => wildlife_sighting_1.WildlifeSighting)
-], Study.prototype, "wildlife_sightings", void 0);
+    (0, class_transformer_1.Type)(() => wildlife_sighting_1.Sighting)
+], Study.prototype, "sightings", void 0);

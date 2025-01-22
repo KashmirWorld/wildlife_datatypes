@@ -1,120 +1,132 @@
-import { Camera } from "./Camera";
-import { WildlifeSighting } from "./wildlife_sighting";
-import { Type } from "class-transformer";
 import "reflect-metadata";
 
+import { Type } from "class-transformer";
+import { Camera } from "./Camera";
+import { Sighting } from "./wildlife_sighting";
+
 export class Study {
-  public name: string;
-  public readonly project_uuid: string;
-  public readonly start_date: number;
-  public end_date: number;
-  public description: string;
-  public threshold: number;
-  // This field refers to the date that this studies data was updated, the data being the properties above ^^
-  // this doesn't include camera_stations as they house their own lastupdated property
-  public lastupdated: number;
-  public data_batch_ids: string[];
+  public readonly uuid: string;
+  public readonly study_name: string;
+  private start_date: number;
+  private end_date: number | null;
+  private last_update: number;
+  private description: string;
+  private confidence_threshold: number;
+
+  private batch_uuids: string[];
 
   @Type(() => Camera)
-  public camera_stations: Camera[];
-  @Type(() => WildlifeSighting)
-  public wildlife_sightings: WildlifeSighting[];
+  private cameras: Camera[];
+  @Type(() => Sighting)
+  private sightings: Sighting[];
 
   constructor(
     uuid: string,
-    name: string,
-    end_date: number,
+    study_name: string,
+    end_date: number | null,
     description: string,
-    threshold: number
+    confidence_threshold: number
   ) {
-    this.name = name;
-    this.project_uuid = uuid;
+    this.uuid = uuid;
+    this.study_name = study_name;
     this.start_date = Math.floor(new Date().getTime() / 1000);
     this.end_date = end_date;
+    this.last_update = this.start_date;
     this.description = description;
-    this.threshold = threshold;
-    this.camera_stations = [];
-    this.wildlife_sightings = [];
-    this.data_batch_ids = [];
-    this.lastupdated = this.start_date;
+    this.confidence_threshold = confidence_threshold;
+
+    this.cameras = [];
+    this.batch_uuids = [];
+    this.sightings = [];
   }
 
-  get_start_date_as_date(): Date {
+  public get_start_date_as_date(): Date {
     return new Date(this.start_date * 1000);
   }
 
-  get_end_date_as_date(): Date {
-    return new Date(this.end_date * 1000);
+  public get_end_date_as_date(): Date | null {
+    if (this.end_date) {
+      return new Date(this.end_date * 1000);
+    } else {
+      return null;
+    }
   }
 
-  get_last_updated_as_date(): Date {
-    return new Date(this.lastupdated * 1000);
+  public get_last_updated_as_date(): Date {
+    return new Date(this.last_update * 1000);
   }
 
-  add_camera_station(camera_station: Camera) {
-    this.camera_stations.push(camera_station);
+  public get_num_cameras(): Number {
+    return this.cameras.length;
   }
 
-  remove_camera_station(camera_station: Camera) {
-    this.camera_stations.splice(
-      this.camera_stations.findIndex((x) => x.uuid === camera_station.uuid),
+  public add_camera_station(camera: Camera) {
+    this.cameras.push(camera);
+  }
+
+  public remove_camera_station(camera: Camera) {
+    this.cameras.splice(
+      this.cameras.findIndex((x) => x.uuid === camera.uuid),
       1
     );
   }
 
-  get_camera_station_by_id(id: string): Camera | null {
-    let returnValue = null;
-    this.camera_stations.forEach(function (camera_station) {
-      if (camera_station.uuid == id) {
-        returnValue = camera_station;
+  public get_camera_by_uuid(uuid: string): Camera | null {
+    this.cameras.forEach((camera) => {
+      if (camera.uuid == uuid) {
+        return camera;
       }
     });
-    return returnValue;
+    return null;
   }
 
-  get_camera_station_by_camera_id(camera_id: string): Camera | null {
-    for (let camera_station of this.camera_stations) {
-      if (camera_station.cameraID == camera_id) {
-        return camera_station;
+  public get_camera_by_camera_id(camera_id: string): Camera | null {
+    this.cameras.forEach((camera) => {
+      if (camera.camera_id == camera_id) {
+        return camera;
+      }
+    });
+    return null;
+  }
+
+  public get_num_sightings(): number {
+    return this.sightings.length;
+  }
+
+  public add_sighting(sighting: Sighting) {
+    this.sightings.push(sighting);
+  }
+
+  public remove_sighting(sighting: Sighting) {
+    this.sightings.splice(
+      this.sightings.findIndex((x) => x.uuid === sighting.uuid),
+      1
+    );
+  }
+
+  get_sighting_by_image_id(image_id: string): Sighting | null {
+    for (let sighting of this.sightings) {
+      if (sighting.image_id == image_id) {
+        return sighting;
       }
     }
     return null;
   }
 
-  get_num_wildlife_sightings(): number {
-    return this.wildlife_sightings.length;
-  }
-
-  add_wildlife_sighting(wildlife_sighting: WildlifeSighting) {
-    this.wildlife_sightings.push(wildlife_sighting);
-  }
-
-  remove_wildlife_sighting(wildlife_sighting: WildlifeSighting) {
-    this.wildlife_sightings.splice(
-      this.wildlife_sightings.indexOf(wildlife_sighting),
-      1
+  verify_data_batch_uuid(batch_uuid: string): boolean {
+    return !this.batch_uuids.some(
+      (existing_uuid) => batch_uuid === existing_uuid
     );
   }
 
-  get_wildlife_sighting_by_image_id(image_id: string): WildlifeSighting | null {
-    let returnValue = null;
-    for (let wildlife_sighting of this.wildlife_sightings) {
-      if (wildlife_sighting.image_id == image_id) {
-        returnValue = wildlife_sighting;
-      }
-    }
-    return returnValue;
+  add_data_batch_uuid(batch_uuid: string) {
+    this.batch_uuids.push(batch_uuid);
   }
 
-  verify_data_batch_id(batch_id: string): boolean {
-    return !this.data_batch_ids.some((existing_id) => batch_id === existing_id);
-  }
-
-  add_data_batch_id(batch_id: string) {
-    this.data_batch_ids.push(batch_id);
-  }
-
-  remove_data_batch_id(batch_id: string) {
-    this.data_batch_ids.splice(this.data_batch_ids.indexOf(batch_id), 1);
+  remove_data_batch_id(batch_uuid: string) {
+    this.batch_uuids.splice(
+      this.batch_uuids.findIndex((x) => x === batch_uuid),
+      1
+    );
   }
 }
