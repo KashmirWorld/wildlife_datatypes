@@ -60,7 +60,7 @@ export class Study {
     return this.cameras;
   }
 
-  public get_num_cameras(): Number {
+  public get_num_cameras(): number {
     return this.cameras.length;
   }
 
