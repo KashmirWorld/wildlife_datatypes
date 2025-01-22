@@ -2,15 +2,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CameraExtensions = exports.Ecosystem = void 0;
 class Ecosystem {
-    constructor(name, camera_extensions, terrains, habitats, substrates, lures, camera_potentials) {
+    constructor(name, camera_extensions, optional) {
         this.name = name;
         this.camera_extensions = camera_extensions;
         // Camera extension parameters
-        this.terrains = terrains;
-        this.habitats = habitats;
-        this.substrates = substrates;
-        this.lures = lures;
-        this.camera_potentials = camera_potentials;
+        this.terrains = optional === null || optional === void 0 ? void 0 : optional.terrains;
+        this.habitats = optional === null || optional === void 0 ? void 0 : optional.habitats;
+        this.substrates = optional === null || optional === void 0 ? void 0 : optional.substrates;
+        this.lures = optional === null || optional === void 0 ? void 0 : optional.lures;
+        this.camera_potentials = optional === null || optional === void 0 ? void 0 : optional.camera_potentials;
     }
     get_active_camera_extensions() {
         return this.camera_extensions;

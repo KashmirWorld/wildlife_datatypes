@@ -11,21 +11,23 @@ export class Ecosystem {
   constructor(
     name: string,
     camera_extensions: CameraExtensions[],
-    terrains?: string[],
-    habitats?: string[],
-    substrates?: string[],
-    lures?: string[],
-    camera_potentials?: string[]
+    optional?: {
+      terrains?: string[];
+      habitats?: string[];
+      substrates?: string[];
+      lures?: string[];
+      camera_potentials?: string[];
+    }
   ) {
     this.name = name;
     this.camera_extensions = camera_extensions;
 
     // Camera extension parameters
-    this.terrains = terrains;
-    this.habitats = habitats;
-    this.substrates = substrates;
-    this.lures = lures;
-    this.camera_potentials = camera_potentials;
+    this.terrains = optional?.terrains;
+    this.habitats = optional?.habitats;
+    this.substrates = optional?.substrates;
+    this.lures = optional?.lures;
+    this.camera_potentials = optional?.camera_potentials;
   }
 
   public get_active_camera_extensions() {
