@@ -56,6 +56,10 @@ export class Study {
     return new Date(this.last_update * 1000);
   }
 
+  public get_cameras(): Camera[] {
+    return this.cameras;
+  }
+
   public get_num_cameras(): Number {
     return this.cameras.length;
   }

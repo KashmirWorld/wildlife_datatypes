@@ -38,6 +38,9 @@ class Study {
     get_last_updated_as_date() {
         return new Date(this.last_update * 1000);
     }
+    get_cameras() {
+        return this.cameras;
+    }
     get_num_cameras() {
         return this.cameras.length;
     }

@@ -16,6 +16,7 @@ export declare class Study {
     get_start_date_as_date(): Date;
     get_end_date_as_date(): Date | null;
     get_last_updated_as_date(): Date;
+    get_cameras(): Camera[];
     get_num_cameras(): Number;
     add_camera_station(camera: Camera): void;
     remove_camera_station(camera: Camera): void;
