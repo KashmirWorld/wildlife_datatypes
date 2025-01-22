@@ -83,13 +83,13 @@ class Study {
         }
         return null;
     }
-    verify_data_batch_uuid(batch_uuid) {
+    verify_batch_uuid(batch_uuid) {
         return !this.batch_uuids.some((existing_uuid) => batch_uuid === existing_uuid);
     }
-    add_data_batch_uuid(batch_uuid) {
+    add_batch_uuid(batch_uuid) {
         this.batch_uuids.push(batch_uuid);
     }
-    remove_data_batch_id(batch_uuid) {
+    remove_batch_id(batch_uuid) {
         this.batch_uuids.splice(this.batch_uuids.findIndex((x) => x === batch_uuid), 1);
     }
 }

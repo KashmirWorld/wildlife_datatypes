@@ -117,17 +117,17 @@ export class Study {
     return null;
   }
 
-  verify_data_batch_uuid(batch_uuid: string): boolean {
+  verify_batch_uuid(batch_uuid: string): boolean {
     return !this.batch_uuids.some(
       (existing_uuid) => batch_uuid === existing_uuid
     );
   }
 
-  add_data_batch_uuid(batch_uuid: string) {
+  add_batch_uuid(batch_uuid: string) {
     this.batch_uuids.push(batch_uuid);
   }
 
-  remove_data_batch_id(batch_uuid: string) {
+  remove_batch_id(batch_uuid: string) {
     this.batch_uuids.splice(
       this.batch_uuids.findIndex((x) => x === batch_uuid),
       1

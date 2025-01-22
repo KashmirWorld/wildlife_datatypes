@@ -26,7 +26,7 @@ export declare class Study {
     add_sighting(sighting: Sighting): void;
     remove_sighting(sighting: Sighting): void;
     get_sighting_by_image_id(image_id: string): Sighting | null;
-    verify_data_batch_uuid(batch_uuid: string): boolean;
-    add_data_batch_uuid(batch_uuid: string): void;
-    remove_data_batch_id(batch_uuid: string): void;
+    verify_batch_uuid(batch_uuid: string): boolean;
+    add_batch_uuid(batch_uuid: string): void;
+    remove_batch_id(batch_uuid: string): void;
 }
