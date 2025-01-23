@@ -40,6 +40,10 @@ export class Study {
     this.sightings = [];
   }
 
+  public get_ecosystem(): string {
+    return this.ecosystem;
+  }
+
   public get_start_date_as_date(): Date {
     return new Date(this.start_date * 1000);
   }

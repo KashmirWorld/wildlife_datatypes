@@ -13,6 +13,7 @@ export declare class Study {
     private cameras;
     private sightings;
     constructor(name: string, ecosystem: string, end_date: number | null, description: string, confidence_threshold: number);
+    get_ecosystem(): string;
     get_start_date_as_date(): Date;
     get_end_date_as_date(): Date | null;
     get_last_updated_as_date(): Date;

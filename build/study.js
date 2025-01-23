@@ -24,6 +24,9 @@ class Study {
         this.data_batch_uuids = [];
         this.sightings = [];
     }
+    get_ecosystem() {
+        return this.ecosystem;
+    }
     get_start_date_as_date() {
         return new Date(this.start_date * 1000);
     }
