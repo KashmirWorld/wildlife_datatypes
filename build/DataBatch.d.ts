@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { Detection } from "./detection";
+import { Detection } from "./Detection";
 export declare class DataBatch {
     readonly uuid: string;
     private study_name;

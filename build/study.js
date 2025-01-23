@@ -10,7 +10,7 @@ exports.Study = void 0;
 require("reflect-metadata");
 const class_transformer_1 = require("class-transformer");
 const Camera_1 = require("./Camera");
-const wildlife_sighting_1 = require("./wildlife_sighting");
+const Sighting_1 = require("./Sighting");
 class Study {
     constructor(name, ecosystem, end_date, description, confidence_threshold) {
         this.name = name;
@@ -21,7 +21,7 @@ class Study {
         this.description = description;
         this.confidence_threshold = confidence_threshold;
         this.cameras = [];
-        this.batch_uuids = [];
+        this.data_batch_uuids = [];
         this.sightings = [];
     }
     get_start_date_as_date() {
@@ -75,14 +75,14 @@ class Study {
         }
         return null;
     }
-    verify_batch_uuid(batch_uuid) {
-        return !this.batch_uuids.some((existing_uuid) => batch_uuid === existing_uuid);
+    verify_data_batch_uuid(data_batch_uuid) {
+        return !this.data_batch_uuids.some((existing_uuid) => data_batch_uuid === existing_uuid);
     }
-    add_batch_uuid(batch_uuid) {
-        this.batch_uuids.push(batch_uuid);
+    add_data_batch_uuid(data_batch_uuid) {
+        this.data_batch_uuids.push(data_batch_uuid);
     }
-    remove_batch_id(batch_uuid) {
-        this.batch_uuids.splice(this.batch_uuids.findIndex((x) => x === batch_uuid), 1);
+    remove_data_batch_uuid(data_batch_uuid) {
+        this.data_batch_uuids.splice(this.data_batch_uuids.findIndex((x) => x === data_batch_uuid), 1);
     }
 }
 exports.Study = Study;
@@ -90,5 +90,5 @@ __decorate([
     (0, class_transformer_1.Type)(() => Camera_1.Camera)
 ], Study.prototype, "cameras", void 0);
 __decorate([
-    (0, class_transformer_1.Type)(() => wildlife_sighting_1.Sighting)
+    (0, class_transformer_1.Type)(() => Sighting_1.Sighting)
 ], Study.prototype, "sightings", void 0);

@@ -1,7 +1,7 @@
 import "reflect-metadata";
-import { Detection } from "./detection";
+import { Detection } from "./Detection";
 
-export class Batch {
+export class DataBatch {
   public readonly uuid: string;
   private study_name: string;
   private camera_id: string;

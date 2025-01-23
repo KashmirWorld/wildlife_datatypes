@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { Camera } from "./Camera";
-import { Sighting } from "./wildlife_sighting";
+import { Sighting } from "./Sighting";
 export declare class Study {
     readonly name: string;
     private ecosystem;
@@ -9,7 +9,7 @@ export declare class Study {
     private last_update;
     private description;
     private confidence_threshold;
-    private batch_uuids;
+    private data_batch_uuids;
     private cameras;
     private sightings;
     constructor(name: string, ecosystem: string, end_date: number | null, description: string, confidence_threshold: number);
@@ -25,7 +25,7 @@ export declare class Study {
     add_sighting(sighting: Sighting): void;
     remove_sighting(sighting: Sighting): void;
     get_sighting_by_image_id(image_id: string): Sighting | null;
-    verify_batch_uuid(batch_uuid: string): boolean;
-    add_batch_uuid(batch_uuid: string): void;
-    remove_batch_id(batch_uuid: string): void;
+    verify_data_batch_uuid(data_batch_uuid: string): boolean;
+    add_data_batch_uuid(data_batch_uuid: string): void;
+    remove_data_batch_uuid(data_batch_uuid: string): void;
 }

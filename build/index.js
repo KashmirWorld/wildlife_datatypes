@@ -15,8 +15,8 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./Ecosystem"), exports);
-__exportStar(require("./study"), exports);
+__exportStar(require("./Study"), exports);
 __exportStar(require("./Camera"), exports);
-__exportStar(require("./wildlife_sighting"), exports);
-__exportStar(require("./data_batch"), exports);
-__exportStar(require("./detection"), exports);
+__exportStar(require("./DataBatch"), exports);
+__exportStar(require("./Sighting"), exports);
+__exportStar(require("./Detection"), exports);

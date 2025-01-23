@@ -2,7 +2,7 @@ import "reflect-metadata";
 
 import { Type } from "class-transformer";
 import { Camera } from "./Camera";
-import { Sighting } from "./wildlife_sighting";
+import { Sighting } from "./Sighting";
 
 export class Study {
   public readonly name: string;
@@ -13,7 +13,7 @@ export class Study {
   private description: string;
   private confidence_threshold: number;
 
-  private batch_uuids: string[];
+  private data_batch_uuids: string[];
 
   @Type(() => Camera)
   private cameras: Camera[];
@@ -36,7 +36,7 @@ export class Study {
     this.confidence_threshold = confidence_threshold;
 
     this.cameras = [];
-    this.batch_uuids = [];
+    this.data_batch_uuids = [];
     this.sightings = [];
   }
 
@@ -108,19 +108,19 @@ export class Study {
     return null;
   }
 
-  verify_batch_uuid(batch_uuid: string): boolean {
-    return !this.batch_uuids.some(
-      (existing_uuid) => batch_uuid === existing_uuid
+  verify_data_batch_uuid(data_batch_uuid: string): boolean {
+    return !this.data_batch_uuids.some(
+      (existing_uuid) => data_batch_uuid === existing_uuid
     );
   }
 
-  add_batch_uuid(batch_uuid: string) {
-    this.batch_uuids.push(batch_uuid);
+  add_data_batch_uuid(data_batch_uuid: string) {
+    this.data_batch_uuids.push(data_batch_uuid);
   }
 
-  remove_batch_id(batch_uuid: string) {
-    this.batch_uuids.splice(
-      this.batch_uuids.findIndex((x) => x === batch_uuid),
+  remove_data_batch_uuid(data_batch_uuid: string) {
+    this.data_batch_uuids.splice(
+      this.data_batch_uuids.findIndex((x) => x === data_batch_uuid),
       1
     );
   }
