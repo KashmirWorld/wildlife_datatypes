@@ -1,77 +1,89 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DataBatch = void 0;
+exports.Batch = void 0;
 require("reflect-metadata");
-class DataBatch {
-    constructor(uuid, author, study_name, camera_station_id, note) {
+class Batch {
+    constructor(uuid, study_name, camera_id, author_uuid, confidence_threshold) {
         this.uuid = uuid;
-        this.date = Math.floor(new Date().getTime() / 1000);
-        this.author = author;
         this.study_name = study_name;
-        this.camera_station_id = camera_station_id;
-        this.note = note;
-        this.image_IDs = [];
+        this.camera_id = camera_id;
+        this.author_uuid = author_uuid;
+        this.creation_date = Math.floor(new Date().getTime() / 1000);
+        this.confidence_threshold = confidence_threshold;
+        this.image_ids = [];
         this.detections = {};
         this.detected_classes = [];
-        this.confidence_threshold = 0.7;
     }
-    // Fetch creation date
-    get_date_as_date() {
-        return new Date(this.date * 1000);
+    get_study_name() {
+        return this.study_name;
     }
-    // Fetch total number of images
+    get_camera_id() {
+        return this.camera_id;
+    }
+    get_author_uuid() {
+        return this.author_uuid;
+    }
+    get_creation_date() {
+        return new Date(this.creation_date * 1000);
+    }
+    get_confidence_threshold() {
+        return this.confidence_threshold;
+    }
+    set_confidence_threshold(confidence_threshold) {
+        if (confidence_threshold >= 0 && confidence_threshold <= 1) {
+            this.confidence_threshold = confidence_threshold;
+        }
+    }
     get_num_images() {
-        return this.image_IDs.length;
+        return this.image_ids.length;
     }
-    // Convert image ID to image path
-    get_path_by_image_id(image_ID) {
-        return this.study_name + "/data/" + this.uuid + "/image_" + image_ID;
+    get_detected_classes() {
+        return this.detected_classes;
     }
-    // Convert image path to image ID
+    get_num_detected_classes() {
+        return this.get_detected_classes().length;
+    }
+    // Convert image_id to image path
+    get_path_by_image_id(image_id) {
+        return this.study_name + "/data/" + this.uuid + "/image_" + image_id;
+    }
+    // Convert image path to image_id
     get_image_id_by_path(image_path) {
         return image_path.replace(this.study_name + "/data/" + this.uuid + "/image_", "");
     }
     // Fetch all image IDs for a specific class
-    get_image_IDs_by_class(class_ID) {
-        let image_IDs = [];
-        // Iterate over all image_IDs
-        for (const image_ID of this.image_IDs) {
+    get_image_ids_by_class(class_id) {
+        let image_ids = [];
+        // Iterate over all image_ids
+        for (const image_id of this.image_ids) {
             // Iterate over all associated detections
-            for (const detection of this.detections[image_ID]) {
-                // Check if the detection contains the correct class_ID
-                if (detection.class_ID == class_ID) {
-                    // Store the image_ID, if not already included
-                    if (!image_IDs.includes(image_ID)) {
-                        image_IDs.push(image_ID);
+            for (const detection of this.detections[image_id]) {
+                // Check if the detection contains the correct class_id
+                if (detection.class_id == class_id) {
+                    // Store the image_id, if not already included
+                    if (!image_ids.includes(image_id)) {
+                        image_ids.push(image_id);
                     }
                 }
             }
         }
-        return image_IDs;
+        return image_ids;
     }
     // Fetch all image paths for a specific class
     get_image_paths_by_class(class_id) {
-        const image_IDs = this.get_image_IDs_by_class(class_id);
-        const image_paths = image_IDs.map((image_ID) => this.get_path_by_image_id(image_ID));
+        const image_ids = this.get_image_ids_by_class(class_id);
+        const image_paths = image_ids.map((image_id) => this.get_path_by_image_id(image_id));
         return image_paths;
     }
-    // Fetch all detected classes
-    get_detected_classes() {
-        return this.detected_classes;
-    }
-    // Fetch the number of classes detected
-    get_num_detected_classes() {
-        return this.get_detected_classes().length;
-    }
     // Fetch all detections for a specific class
-    get_detections_by_class(class_ID) {
+    get_detections_by_class(class_id) {
         let detections = [];
-        // Iterate over all image_IDs
-        for (const image_ID of this.image_IDs) {
+        // Iterate over all image_ids
+        for (const image_id of this.image_ids) {
             // Iterate over all associated detections
-            for (const detection of this.detections[image_ID]) {
-                // Check if the detection contains the correct class_ID
-                if (detection.class_ID == class_ID) {
+            for (const detection of this.detections[image_id]) {
+                // Check if the detection contains the correct class_id
+                if (detection.class_id == class_id) {
                     // Store the detection, if not already included
                     if (!detections.includes(detection)) {
                         detections.push(detection);
@@ -93,63 +105,63 @@ class DataBatch {
     get_avg_confidence_score() {
         var _a;
         const confidenceScores = [];
-        (_a = this.image_IDs) === null || _a === void 0 ? void 0 : _a.forEach((image_ID) => {
+        (_a = this.image_ids) === null || _a === void 0 ? void 0 : _a.forEach((image_id) => {
             var _a;
-            (_a = this.detections[image_ID]) === null || _a === void 0 ? void 0 : _a.forEach((detection) => {
+            (_a = this.detections[image_id]) === null || _a === void 0 ? void 0 : _a.forEach((detection) => {
                 confidenceScores.push(detection.confidence);
             });
         });
         return Number(confidenceScores.reduce((partialSum, current) => partialSum + current, 0) / confidenceScores.length);
     }
     // Add detections associated with an image ID (keeps existing detections)
-    add_detections(image_ID, detections) {
-        // Initialize a this.detections array for this image_ID, if nonexistent
-        if (!this.detections[image_ID]) {
-            this.detections[image_ID] = [];
+    add_detections(image_id, detections) {
+        // Initialize a this.detections array for this image_id, if nonexistent
+        if (!this.detections[image_id]) {
+            this.detections[image_id] = [];
         }
         // Add new detections to this.detections
-        this.detections[image_ID].push(...detections);
+        this.detections[image_id].push(...detections);
         // Add new classes to this.detected_classes
         for (const detection of detections) {
-            if (!this.detected_classes.includes(detection.class_ID)) {
-                this.detected_classes.push(detection.class_ID);
+            if (!this.detected_classes.includes(detection.class_id)) {
+                this.detected_classes.push(detection.class_id);
             }
         }
     }
-    // Set detections associated with an image ID (replaces existing detections)
-    set_detections(image_ID, detections) {
+    // Set detections associated with an image_id (replaces existing detections)
+    set_detections(image_id, detections) {
         // Update the this.detections array for this image
-        this.detections[image_ID] = detections;
+        this.detections[image_id] = detections;
         // Add classes to this.detected_classes
         for (const detection of detections) {
-            if (!this.detected_classes.includes(detection.class_ID)) {
-                this.detected_classes.push(detection.class_ID);
+            if (!this.detected_classes.includes(detection.class_id)) {
+                this.detected_classes.push(detection.class_id);
             }
         }
-        // Check if any class IDs no longer have associated detections
-        for (const class_ID of this.get_detected_classes()) {
-            if (!(this.get_num_detections_by_class(class_ID) > 0)) {
-                this.detected_classes.filter((item) => item !== class_ID);
+        // Check if any class_ids no longer have associated detections
+        for (const class_id of this.get_detected_classes()) {
+            if (!(this.get_num_detections_by_class(class_id) > 0)) {
+                this.detected_classes.filter((item) => item !== class_id);
             }
         }
     }
-    // Remove all detections associated with an image ID
-    remove_detections(image_ID) {
-        for (const detection of this.detections[image_ID]) {
-            this.remove_detection(image_ID, detection);
+    // Remove all detections associated with an image_id
+    remove_detections(image_id) {
+        for (const detection of this.detections[image_id]) {
+            this.remove_detection(image_id, detection);
         }
     }
-    // Remove a specific detection associated with an image ID
-    remove_detection(image_ID, provided_detection) {
+    // Remove a specific detection associated with an image_id
+    remove_detection(image_id, provided_detection) {
         // Get index of the provided detection (-1 if not present)
-        let index = this.detections[image_ID].indexOf(provided_detection);
+        let index = this.detections[image_id].indexOf(provided_detection);
         // Remove the provided detection if present
         if (index > -1) {
-            this.detections[image_ID].splice(index, 1);
+            this.detections[image_id].splice(index, 1);
         }
-        // Check if the class ID from the provided detection is still present in other detections
-        if (this.get_num_detections_by_class(provided_detection.class_ID) == 0) {
-            this.detected_classes = this.detected_classes.filter((class_ID) => class_ID !== provided_detection.class_ID);
+        // Check if the class_id from the provided detection is still present in other detections
+        if (this.get_num_detections_by_class(provided_detection.class_id) == 0) {
+            this.detected_classes = this.detected_classes.filter((class_id) => class_id !== provided_detection.class_id);
         }
     }
     // Remove all detections from databatch
@@ -158,4 +170,4 @@ class DataBatch {
         this.detected_classes = [];
     }
 }
-exports.DataBatch = DataBatch;
+exports.Batch = Batch;

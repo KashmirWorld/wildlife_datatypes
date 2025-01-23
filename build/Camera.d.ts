@@ -1,6 +1,5 @@
 import "reflect-metadata";
 export declare class Camera {
-    readonly uuid: string;
     readonly camera_id: string;
     private latitude;
     private longitude;
@@ -13,7 +12,7 @@ export declare class Camera {
     private substrate;
     private lures;
     private station_potential;
-    constructor(uuid: string, camera_id: string, latitiude: number, longitude: number, note?: string, terrain?: string, habitat?: string, substrate?: string, lures?: string[], station_potential?: string);
+    constructor(camera_id: string, latitude: number, longitude: number, note?: string, terrain?: string, habitat?: string, substrate?: string, lures?: string[], station_potential?: string);
     private set_last_update;
     get_latitude(): number;
     set_latitude(value: number): void;

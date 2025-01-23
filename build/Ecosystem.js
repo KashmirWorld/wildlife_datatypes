@@ -2,15 +2,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CameraExtensions = exports.Ecosystem = void 0;
 class Ecosystem {
-    constructor(name, camera_extensions, optional) {
+    constructor(name, camera_extensions, camera_extension_params) {
         this.name = name;
         this.camera_extensions = camera_extensions;
         // Camera extension parameters
-        this.terrains = optional === null || optional === void 0 ? void 0 : optional.terrains;
-        this.habitats = optional === null || optional === void 0 ? void 0 : optional.habitats;
-        this.substrates = optional === null || optional === void 0 ? void 0 : optional.substrates;
-        this.lures = optional === null || optional === void 0 ? void 0 : optional.lures;
-        this.camera_potentials = optional === null || optional === void 0 ? void 0 : optional.camera_potentials;
+        this.terrains = camera_extension_params === null || camera_extension_params === void 0 ? void 0 : camera_extension_params.terrains;
+        this.habitats = camera_extension_params === null || camera_extension_params === void 0 ? void 0 : camera_extension_params.habitats;
+        this.substrates = camera_extension_params === null || camera_extension_params === void 0 ? void 0 : camera_extension_params.substrates;
+        this.lures = camera_extension_params === null || camera_extension_params === void 0 ? void 0 : camera_extension_params.lures;
+        this.camera_potentials = camera_extension_params === null || camera_extension_params === void 0 ? void 0 : camera_extension_params.camera_potentials;
     }
     get_active_camera_extensions() {
         return this.camera_extensions;

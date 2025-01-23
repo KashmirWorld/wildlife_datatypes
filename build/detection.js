@@ -3,13 +3,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Detection = void 0;
 require("reflect-metadata");
 class Detection {
-    constructor(x, y, width, height, confidence, class_ID) {
+    constructor(x, y, width, height, confidence, class_id) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.confidence = confidence;
-        this.class_ID = class_ID;
+        this.class_id = class_id;
     }
     make_valid(imageWidth, imageHeight) {
         // Fix detections with a negative width

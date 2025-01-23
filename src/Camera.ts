@@ -2,7 +2,6 @@ import "reflect-metadata";
 
 export class Camera {
   // Base attributes
-  public readonly uuid: string;
   public readonly camera_id: string;
   private latitude: number;
   private longitude: number;
@@ -19,9 +18,8 @@ export class Camera {
   private station_potential: string | undefined;
 
   constructor(
-    uuid: string,
     camera_id: string,
-    latitiude: number,
+    latitude: number,
     longitude: number,
     note?: string,
     terrain?: string,
@@ -31,9 +29,8 @@ export class Camera {
     station_potential?: string
   ) {
     // Base parameters
-    this.uuid = uuid;
     this.camera_id = camera_id;
-    this.latitude = latitiude;
+    this.latitude = latitude;
     this.longitude = longitude;
     this.creation_date = Math.floor(new Date().getTime() / 1000);
     this.last_update = this.creation_date;

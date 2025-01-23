@@ -3,11 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Camera = void 0;
 require("reflect-metadata");
 class Camera {
-    constructor(uuid, camera_id, latitiude, longitude, note, terrain, habitat, substrate, lures, station_potential) {
+    constructor(camera_id, latitude, longitude, note, terrain, habitat, substrate, lures, station_potential) {
         // Base parameters
-        this.uuid = uuid;
         this.camera_id = camera_id;
-        this.latitude = latitiude;
+        this.latitude = latitude;
         this.longitude = longitude;
         this.creation_date = Math.floor(new Date().getTime() / 1000);
         this.last_update = this.creation_date;

@@ -12,9 +12,9 @@ const class_transformer_1 = require("class-transformer");
 const Camera_1 = require("./Camera");
 const wildlife_sighting_1 = require("./wildlife_sighting");
 class Study {
-    constructor(uuid, name, end_date, description, confidence_threshold) {
-        this.uuid = uuid;
+    constructor(name, ecosystem, end_date, description, confidence_threshold) {
         this.name = name;
+        this.ecosystem = ecosystem;
         this.start_date = Math.floor(new Date().getTime() / 1000);
         this.end_date = end_date;
         this.last_update = this.start_date;
@@ -48,15 +48,7 @@ class Study {
         this.cameras.push(camera);
     }
     remove_camera_station(camera) {
-        this.cameras.splice(this.cameras.findIndex((x) => x.uuid === camera.uuid), 1);
-    }
-    get_camera_by_uuid(uuid) {
-        this.cameras.forEach((camera) => {
-            if (camera.uuid == uuid) {
-                return camera;
-            }
-        });
-        return null;
+        this.cameras.splice(this.cameras.findIndex((x) => x.camera_id === camera.camera_id), 1);
     }
     get_camera_by_camera_id(camera_id) {
         this.cameras.forEach((camera) => {

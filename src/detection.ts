@@ -6,7 +6,7 @@ export class Detection {
   public width: number;
   public height: number;
   public confidence: number;
-  public class_ID: number;
+  public class_id: number;
 
   constructor(
     x: number,
@@ -14,17 +14,17 @@ export class Detection {
     width: number,
     height: number,
     confidence: number,
-    class_ID: number
+    class_id: number
   ) {
     this.x = x;
     this.y = y;
     this.width = width;
     this.height = height;
     this.confidence = confidence;
-    this.class_ID = class_ID;
+    this.class_id = class_id;
   }
 
-  make_valid(imageWidth: number, imageHeight: number) {
+  public make_valid(imageWidth: number, imageHeight: number) {
     // Fix detections with a negative width
     if (this.width < 0) {
       let newX = this.x + this.width;

@@ -5,8 +5,8 @@ import { Camera } from "./Camera";
 import { Sighting } from "./wildlife_sighting";
 
 export class Study {
-  public readonly uuid: string;
   public readonly name: string;
+  private ecosystem: string;
   private start_date: number;
   private end_date: number | null;
   private last_update: number;
@@ -21,14 +21,14 @@ export class Study {
   private sightings: Sighting[];
 
   constructor(
-    uuid: string,
     name: string,
+    ecosystem: string,
     end_date: number | null,
     description: string,
     confidence_threshold: number
   ) {
-    this.uuid = uuid;
     this.name = name;
+    this.ecosystem = ecosystem;
     this.start_date = Math.floor(new Date().getTime() / 1000);
     this.end_date = end_date;
     this.last_update = this.start_date;
@@ -70,18 +70,9 @@ export class Study {
 
   public remove_camera_station(camera: Camera) {
     this.cameras.splice(
-      this.cameras.findIndex((x) => x.uuid === camera.uuid),
+      this.cameras.findIndex((x) => x.camera_id === camera.camera_id),
       1
     );
-  }
-
-  public get_camera_by_uuid(uuid: string): Camera | null {
-    this.cameras.forEach((camera) => {
-      if (camera.uuid == uuid) {
-        return camera;
-      }
-    });
-    return null;
   }
 
   public get_camera_by_camera_id(camera_id: string): Camera | null {

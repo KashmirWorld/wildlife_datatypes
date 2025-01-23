@@ -6,7 +6,7 @@ export declare class Ecosystem {
     private substrates;
     private lures;
     private camera_potentials;
-    constructor(name: string, camera_extensions: CameraExtensions[], optional?: {
+    constructor(name: string, camera_extensions: CameraExtensions[], camera_extension_params?: {
         terrains?: string[];
         habitats?: string[];
         substrates?: string[];
